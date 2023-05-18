@@ -1,0 +1,8 @@
+mongoose.connect() - Conecta una aplicación Node.js a una base de datos MongoDB.
+mongoose.Schema() - Define la estructura de un modelo de datos para una colección de MongoDB.
+mongoose.model() - Crea un modelo de datos a partir de un esquema de Mongoose y lo asocia con una colección de MongoDB.
+Model.find() - Recupera documentos que cumplen ciertos criterios de búsqueda.
+Model.findById() - Recupera un documento por su ID.
+Model.aggregate() - Realiza operaciones de agregación en documentos de la colección.
+findOneAndDelete es un método de Mongoose que busca y elimina un documento de una colección de MongoDB que cumple ciertos criterios de búsqueda.
+findByIdAndUpdate es un método de Mongoose que busca y modifica un documento de una colección de MongoDB que cumple ciertos criterios de búsqueda.
