@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+// import React, { useEffect} from 'react'
 import Home from './Pages/Home/Home'
 import Contact from './Pages/contact/Contact'
 import NotFound from './Pages/notFound/Notfound'
@@ -6,41 +6,64 @@ import Plans from './Pages/plans/Plans'
 import About from './Pages/about/About'
 import Footer from './Components/Footer'
 import Ejercisios from './Pages/exercises/Ejercisios'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import ExerciseDetail from './Pages/exercises/ExerciseDetail'
 import Products from './Pages/products/Products'
 import Product from './Pages/product/Product'
 import Cart from './Pages/cart/Cart'
-import { useDispatch } from 'react-redux';
-import {resetCartIfNeeded} from './redux/cartRedux'
+import Login from './Pages/login/Login'
+import Logout from './Pages/logout/Logout'
+import { useSelector } from 'react-redux';
+// import {resetCartIfNeeded} from './redux/cartRedux'
+// import {resetUserIfNeeded} from './redux/userRedux'
 const App = () => {
   //resetea los valores del carrito si no hay productos en el
-  const dispatch = useDispatch()
-  useEffect(()=>{
-    dispatch(resetCartIfNeeded())
-  },[dispatch])
+  // const dispatch = useDispatch()
+  // useEffect(()=>{
+  //   dispatch(resetCartIfNeeded())
+  //   dispatch(resetUserIfNeeded())
+  // },[dispatch])
+  
 
-  return (
-    <div>
-      <BrowserRouter>
-        <Navbar/>
-        <Routes>
-          <Route index element= {<Home/>}/>
-          <Route path='about' element= {<About/>}/>
-          <Route path='contact' element= {<Contact/>}/>
-          <Route path='plans' element= {<Plans/>}/>
-          <Route path='ejercicios' element= {<Ejercisios/>}/>
-          <Route path="/exercise/:id" element={<ExerciseDetail/>} />
-          <Route path='*' element= {<NotFound/>}/>
-          <Route path='/products' element= {<Products/>}/>
-          <Route path="/product/:id" element ={<Product/>}/>
-          <Route path="/cart" element ={<Cart/>}/>
-       </Routes>
-       <Footer/>
-      </BrowserRouter>
-    </div>
-  )
-}
+  const user = useSelector(state => state.user.currentUser)
+  console.log("🚀 ~ file: App.jsx:29 ~ App ~ user:", user)
+  // const [isLoggedIn, setIsLoggedIn] = useState(false); // Variable de estado para controlar el inicio de sesión
+
+  // Función de control para manejar el inicio de sesión desde el componente Login
+  // const handleLogin = () => {
+  //   setIsLoggedIn(true);
+  // };
+
+  // // Verifica si hay un usuario logeado antes de mostrar el contenido principal
+  // if (user ===null && isLoggedIn) {
+  //   return <Login onLogin={handleLogin}/>;
+  // }else{
+    return (
+      <div>
+        <BrowserRouter>
+          <Navbar/>
+          <Routes>
+            <Route index element= {<Home/>}/>
+            <Route path='about' element= {<About/>}/>
+            <Route path='contact' element= {<Contact/>}/>
+            <Route path='plans' element= {user===null? <Login/>:<Plans/>}/>
+            <Route path='ejercicios' element= {user===null? <Login/>:<Ejercisios/>}/>
+            <Route path="/exercise/:id" element={<ExerciseDetail/>} />
+            <Route path='*' element= {<NotFound/>}/>
+            <Route path='/products' element= {user===null? <Login/>:<Products/>}/>
+            <Route path="/product/:id" element ={<Product/>}/>
+            <Route path="/cart" element ={user===null? <Login/>:<Cart/>}/>
+            {/* SI NO HAY UN USUARIO LOGEADO */}
+            <Route path="/login" element ={<Login/>}/>
+            <Route path="/logout" element ={<Logout/>}/>
+         </Routes>
+         <Footer/>
+        </BrowserRouter>
+      </div>
+    )
+  }
+
+//}
 
 export default App

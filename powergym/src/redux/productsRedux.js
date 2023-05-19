@@ -6,7 +6,6 @@ export const productSlice = createSlice({
     products: [],
     isFetching: false,
     error: false,
-    //product: {},
   },
   reducers: {
     //OBTENER PRODUCTOS

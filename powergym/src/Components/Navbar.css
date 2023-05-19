@@ -10,11 +10,19 @@
     z-index: 99;
 }
 
-/*SOLO EN PANTALLAS MEDIANAS O PEQUEÑAS*/
 .nav__toggle-btn{
     display: none;
 }
 
+/*avatar*/
+.nav__toggle-btn-avatar{
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.nav__toggle-btn-avatar:hover{
+    transform: scale(1.1);
+}
 
 .nav__container{
     /* height: 100%; */
@@ -38,12 +46,17 @@
     font-weight: bolder;
     transition: var(--transition);
 }
+
 .nav__links:hover{
     transform: scale(1.1);
 }
 
 .nav__links a:hover{
     color: var(--color-secondary); 
+}
+
+.active-nav-profile{
+    position: relative;
 }
 
 .active-nav{
@@ -61,6 +74,71 @@
     transform: rotate(45deg);
     margin-top: 0.5rem;
 }
+
+/*ESTILOS PARA EL MENU DE PROFILE*/
+.nav__links-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bolder;
+    gap: 1.5rem;
+    transition: var(--transition);
+}
+
+.nav__links-profile{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    gap: 0;
+    perspective: 400px;
+}
+
+.nav__links-profile :hover{
+    transform: scale(1.1);
+}
+
+.nav__links-profile a:hover{
+    color: var(--color-secondary);
+}
+
+.nav__links-profile li{
+    height: 4rem;
+    width: 100%;
+    box-shadow: -2rem 2rem 5rem rgba(0,0,0,0.4);
+    animation: navAnimation 600ms ease forwards;
+    transform: rotateX(90deg);
+    opacity: 0;
+    transform-origin: top;
+}
+
+.nav__links-profile li:nth-child(2){
+    animation-delay: 200ms;
+}
+
+.nav__links-profile li:nth-child(3){
+    animation-delay: 400ms;
+}
+
+.nav__links-profile li a{
+    background: var(--color-primary);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1rem 5rem 1rem 3rem;
+}
+
+.show__nav-profile{
+    display: flex;
+}
+
+
+.hide__nav-profile{
+    display: none;
+}
+/*==================================*/
+
+
 
 .nav__container img{
     border-radius: 1rem;
@@ -92,6 +170,7 @@
         gap: 0;
         perspective: 400px;
     }
+    
     .active-nav, .active-nav::after{
         display: none;
     }
@@ -104,7 +183,7 @@
         opacity: 0;
         transform-origin: top;
     }
-
+    
     .nav__links li:nth-child(2){
         animation-delay: 200ms;
     }
@@ -131,14 +210,7 @@
     .nav__links li:nth-child(9){
         animation-delay: 1.6s;
     }
-
-    @keyframes navAnimation {
-        to{
-            transform: rotateX(0);
-            opacity: 1;
-        }
-    }
-
+    
     .nav__links li a{
         background: var(--color-primary);
         height: 100%;
@@ -147,6 +219,7 @@
         align-items: center;
         padding: 1rem 5rem 1rem 3rem;
     }
+
     .show__nav{
         display: flex;
     }
@@ -155,5 +228,12 @@
         display: none;
     }
     
+}
+
+@keyframes navAnimation {
+    to{
+        transform: rotateX(0);
+        opacity: 1;
+    }
 }
 

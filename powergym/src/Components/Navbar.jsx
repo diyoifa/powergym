@@ -7,12 +7,22 @@ import {FaBars} from 'react-icons/fa'
 import {MdOutlineClose} from 'react-icons/md'
 import { Badge } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import {useSelector} from 'react-redux'
+import { useSelector} from 'react-redux'
+import BadgeAvatars from './BadgeAvatars'
+// import {logoutSuccess, resetUserIfNeeded} from '../redux/userRedux'
 
 const Navbar = () => {
 const [isNavShowing,setIsNavShowing] = useState(false)
+const [isProfileOptionShowing, setIsProfileOptionShowing] = useState(false)
 const quantity = useSelector(state => state.cart.quantity)
+const user = useSelector(state => state.user.currentUser)
+// const dispatch = useDispatch()
 
+// const handleLogout = (e)=>{
+//   console.log("entre a handleLogout")
+//   e.preventDefault()
+//   resetUserIfNeeded(dispatch)
+// }
 return (
     <div className='nav'>
       <div className='container nav__container'>
@@ -59,13 +69,30 @@ return (
                       <ShoppingCartOutlinedIcon/>
                   </Badge>
                 </NavLink>
-            </li>        
+            </li>                   
         </ul>
-        <button className="nav__toggle-btn" onClick={()=> {setIsNavShowing(prev=>!prev)}}>
+        <button className="nav__toggle-btn" onClick={()=> setIsNavShowing(prev=>!prev)}>
                 { 
                       isNavShowing ? <MdOutlineClose/> : <FaBars/>
                 }
-        </button> 
+        </button>
+
+        <button className="nav__toggle-btn-avatar" onClick={()=> setIsProfileOptionShowing(prev =>!prev)}>
+            {/* si hay un usuario mostrar icono */}
+            {user?<BadgeAvatars/>: <></> } 
+        </button>
+
+        <ul className={`nav__links-profile ${isProfileOptionShowing ? 'show__nav-profile' : 'hide__nav-profile'}`}>
+            <li>
+              <NavLink to={'/'} >mis compras</NavLink>
+            </li>
+            <li>
+              <NavLink to={'/logout'} >Cerrar sesion</NavLink>
+            </li>
+        </ul> 
+
+        {/* <button onClick={handleLogout}> cerrar sesion</button> */}
+
       </div>
     </div>
   )
