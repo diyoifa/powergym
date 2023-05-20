@@ -16,13 +16,15 @@
 
 /*avatar*/
 .nav__toggle-btn-avatar{
-    border-radius: 50%;
+    border-radius:47%;
+    border-color: transparent;
     cursor: pointer;
     transition: var(--transition);
+    padding: 0;
 }
-.nav__toggle-btn-avatar:hover{
+/* .nav__toggle-btn-avatar:hover{
     transform: scale(1.1);
-}
+} */
 
 .nav__container{
     /* height: 100%; */

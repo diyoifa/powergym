@@ -8,17 +8,32 @@ import {deleteProductSuccess} from '../../redux/cartRedux'
 import ClearIcon from '@mui/icons-material/Clear';
 import './Cart.css'
 import swal from 'sweetalert';
+import {order} from '../../redux/apiCalls'
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const quantity = useSelector(state => state.cart.quantity)
     const cart = useSelector(state => state.cart)
-     const dispatch = useDispatch()
-    //  const handleClick = (product)=>{
-        
-    //     dispatch(deleteProductSuccess(product._id))
-    //     // swal("Buen trabajo!", "producto agregado correctamente!", "success");
-    //     console.log(product)
-    // }
+    console.log("🚀 ~ cart:", cart)
+    const products = cart.products
+    console.log("🚀 ~ products:", products)
+    const amount = cart.total
+    console.log("🚀 ~ amount:", amount)
+    const userId = useSelector(state => state.user.currentUser._id)
+    console.log("🚀 ~ file: Cart.jsx:16 ~ Cart ~ userId:", userId)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+     const handleClick = (e)=>{
+        e.preventDefault()
+        if(cart.products <= 0){
+            swal("Carrito vacio!", "debes agregar productos!", "error");
+            return
+        } 
+        order({userId, products, amount}, dispatch)
+        navigate('/pay')
+
+    }
     const handleDeleteProduct = productId => {
         dispatch(deleteProductSuccess(productId));
         swal("Buen trabajo!", "producto eliminado correctamente!", "success");
@@ -81,7 +96,7 @@ const Cart = () => {
                         <span style={{color: "var(--color-gray-200)", fontSize:"28px"}}>Total</span>
                         <span style={{color: "var(--color-gray-200)", fontSize:"28px"}}>$💵{cart.total}</span>
                     </div>
-                    <button className='btn summary-btn__cart'>COMPRAR</button>
+                    <button className='btn summary-btn__cart' onClick={handleClick}>COMPRAR</button>
                 </div>
             </div>
       </section>

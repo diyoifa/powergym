@@ -7,6 +7,7 @@ import FAQS from '../../Components/FAQS'
 import Testimonials from '../../Components/Testimonials'
 
 const Home = () => {
+  
   return (
     <div>
         <MainHeader/>

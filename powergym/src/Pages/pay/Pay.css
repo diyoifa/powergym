@@ -1,0 +1,48 @@
+
+.pay-wrapper{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-inline: auto; 
+    padding: 20px; 
+    border-radius: 1rem;
+    background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+      center;
+    background-size: cover;
+    transition: var(--transition);
+    width: 50%;
+}
+
+.pay-wrapper :hover{
+    /* background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+      center;
+    background-size: cover; */
+    background-color: var(--color-gray-400);
+    color: var(--color-secondary);
+}
+
+.card-pay{
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    color: var(--color-secondary);
+    width: 100%;
+}
+
+
+.wrapper-btn-pay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    width: 100%;
+    gap: 1rem;
+}

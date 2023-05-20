@@ -37,14 +37,12 @@ const { name, quote, job, avatar} = testimonials[index]
 
                 <IoIosArrowDropleftCircle/>
                 </button>
+
                <button 
-                className='testimonials__btn'
-                onClick={()=> {index < 4 ? setIndex(index + 1) : setIndex(0) }}
-
+                    className='testimonials__btn'
+                    onClick={()=> {index < 4 ? setIndex(index + 1) : setIndex(0) }}
                 >
-
                     <IoIosArrowDroprightCircle/>
-
                 </button>
             </div>
 

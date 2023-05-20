@@ -2,6 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
+import { useSelector } from 'react-redux';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -32,15 +33,21 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-
 export default function BadgeAvatars() {
+  const userImg = useSelector(state=>state.user.currentUser.img)
+  // console.log("🚀 ~ file: BadgeAvatars.jsx:38 ~ BadgeAvatars ~ userImg:", userImg)
   return (
       <StyledBadge
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         variant="dot"
       >
-        <Avatar alt="user" src="../images/avatar6.jpg"  />
+        <Avatar 
+          alt="user" 
+          src={userImg} 
+          sx={{ width: 50, height: 50 }}
+          variant="rounded"
+        />
       </StyledBadge>
   );
 }

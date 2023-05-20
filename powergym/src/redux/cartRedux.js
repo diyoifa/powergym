@@ -42,14 +42,13 @@ const cartSlice = createSlice({
       }
       
     },
-    resetCartIfNeeded: (state) => {
-      if (state.products.length === 0) {
-        state.quantity = 0;
-        state.total = 0;
-      }
+    resetCart: (state) => {
+      state.products = []
+      state.quantity = 0
+      state.total = 0
     }
   },
 });
 
-export const { addProduct, deleteProductSuccess, resetCartIfNeeded} = cartSlice.actions;
+export const { addProduct, deleteProductSuccess, resetCart} = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,0 +1,28 @@
+
+.register-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .register-wrapper{
+    width: 50%;
+    padding: 20px;
+    background-color:var(--color-gray-600);   
+    border-radius: 1rem;
+    font-weight: bolder;
+  }
+  .register-wrapper:hover{
+      background-color:var(--color-gray-400);
+    }
+  
+  .register-wrapper h1{
+      color: var(--color-gray-200);
+      transition: var(--transition);
+      margin-bottom: 1rem;
+      
+  }
+  
+  .register-wrapper h1:hover{
+      color: var(--color-secondary);
+      transform: scale(1.1);
+  }

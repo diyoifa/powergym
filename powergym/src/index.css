@@ -8,6 +8,9 @@
     box-sizing: border-box;
 } 
 
+html{
+    scroll-behavior: smooth;
+}
 
 :root{
     --primary-hue:210;
@@ -28,6 +31,8 @@
     --transition: all 500ms ease;
 }
 
+
+
 /*STILOS GENERALES*/
 body{
     font-family: 'Montserrat', sans-serif;
@@ -43,12 +48,11 @@ body{
     margin-inline: auto;
 }
 
-
-
 h1, h2, h3, h4, h5{
     line-height: 1.2;
     color: var(--color-gray-100);
 }
+
 
 .main__header-left-desc{
     color: var(--color-secondary);
@@ -71,6 +75,26 @@ img{
     object-fit: cover;
     width: 100%;
 }
+
+/*=======FORMULARIOS========*/
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+ input{
+    flex: 1;
+  min-width: 40%;
+  margin: 10px 0;
+  padding: 10px;
+  transition: var(--transition);
+  border-radius: 1rem;
+  font-weight: bolder;
+  color: black;
+}
+
+
 
 /*====BOTONES =====*/
 

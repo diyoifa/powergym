@@ -107,7 +107,7 @@
     margin: 2rem 0 5rem;
 }
 
-/*Contain the cards*/
+/*CONTENIDO DE VALORES*/
 .values__wrapper{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -124,11 +124,6 @@
     position: absolute;
     top: -1.5rem;
 }
-
-
-
-
-
 
 
 
@@ -178,8 +173,6 @@
 
 
 
-
-
 /*========TESTIMONIALS=======*/
 .testimonials{
     width: 90%;
@@ -195,6 +188,7 @@
     position: relative;
     text-align: left;
     margin-top: 5rem;
+    transition: var(--transition);
 }
 
 .testimonial__avatar{
@@ -212,6 +206,7 @@
 .testimonial:hover .testimonial__avatar{
     border-radius: 50%;
     border: 3px solid var(--color-secondary);
+    transform: scale(1.1);
 }
 
 .testimonial__quote{
@@ -231,6 +226,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    transition: var(--color-secondary);
 }
 
 .testimonials__btn{
@@ -238,6 +234,8 @@
     cursor: pointer;
     transition: var(--transition);
 }
+
+
 .testimonials__btn svg{
     fill: var(--color-primary);
     font-size: 2rem;

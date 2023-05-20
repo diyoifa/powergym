@@ -7,21 +7,21 @@ import {FaBars} from 'react-icons/fa'
 import {MdOutlineClose} from 'react-icons/md'
 import { Badge } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import BadgeAvatars from './BadgeAvatars'
-// import {logoutSuccess, resetUserIfNeeded} from '../redux/userRedux'
+//  import {logoutSuccess} from '../redux/userRedux'
 
 const Navbar = () => {
 const [isNavShowing,setIsNavShowing] = useState(false)
 const [isProfileOptionShowing, setIsProfileOptionShowing] = useState(false)
 const quantity = useSelector(state => state.cart.quantity)
-const user = useSelector(state => state.user.currentUser)
+const user = useSelector(state => state.user)
 // const dispatch = useDispatch()
 
 // const handleLogout = (e)=>{
 //   console.log("entre a handleLogout")
 //   e.preventDefault()
-//   resetUserIfNeeded(dispatch)
+//   logoutSuccess(dispatch)
 // }
 return (
     <div className='nav'>
@@ -79,20 +79,33 @@ return (
 
         <button className="nav__toggle-btn-avatar" onClick={()=> setIsProfileOptionShowing(prev =>!prev)}>
             {/* si hay un usuario mostrar icono */}
-            {user?<BadgeAvatars/>: <></> } 
+            {
+              user.currentUser&&<BadgeAvatars/>
+            } 
         </button>
 
         <ul className={`nav__links-profile ${isProfileOptionShowing ? 'show__nav-profile' : 'hide__nav-profile'}`}>
             <li>
-              <NavLink to={'/'} >mis compras</NavLink>
+              <NavLink 
+                to={'/'} 
+                onClick={()=> {setIsProfileOptionShowing( prev => !prev )
+                window.scroll({ top: -1800, left: 100, behavior: 'smooth' })
+                }}
+              >
+                mis compras
+              </NavLink>
             </li>
             <li>
-              <NavLink to={'/logout'} >Cerrar sesion</NavLink>
+              <NavLink 
+                to={'/logout'} 
+                onClick={()=> {setIsProfileOptionShowing( prev => !prev )       
+                window.scroll({ top: -1800, left: 100, behavior: 'smooth' })
+                }}
+              >
+                Cerrar sesion
+              </NavLink>
             </li>
         </ul> 
-
-        {/* <button onClick={handleLogout}> cerrar sesion</button> */}
-
       </div>
     </div>
   )

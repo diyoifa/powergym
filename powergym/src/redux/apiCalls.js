@@ -1,10 +1,35 @@
-import { loginFailure, loginStart, loginSuccess } from "./userRedux";
-import { publicRequest } from "../requestMethods";
-import {getProductStart,
+import { privateRequest, publicRequest } from "../requestMethods";
+import {
+  getProductStart,
   getProductsSuccess,
   getProductFailure,
   //getProductSuccess
-  } from "../redux/productsRedux"
+} from "../redux/productsRedux"
+import { 
+  loginFailure, 
+  loginStart, 
+  loginSuccess, 
+  registerStart,
+  registerSuccess,
+  registerFailure,
+  orderStart,
+  orderSuccess,
+  orderFailure  
+} from "./userRedux";
+
+//REGISTRARSE
+export const register = async(dispatch, user)=>{
+  dispatch(registerStart())
+  try {
+    const res = await publicRequest.post("/auth/register", user)
+    console.log("🚀 ~ file: apiCalls.js:17 ~ register ~ res:", res)
+    dispatch(registerSuccess())
+  } catch (error) {
+    console.log("🚀 ~ file: apiCalls.js:20 ~ register ~ error:", error)
+    dispatch(registerFailure())
+  }
+}
+
 
 //INICIAR SESION
 export const login = async (dispatch, user) => {
@@ -46,4 +71,15 @@ export const getProducts = async(dispatch)=>{
 //   }
 // }
 
+//CREAR ORDEN
+export const order = async(order, dispatch)=>{
+  dispatch(orderStart())
+  try {
+    const res = await privateRequest.post("/orders", order)
+    console.log("🚀 ~ file: apiCalls.js:79 ~ order ~ res:", res)
+    dispatch(orderSuccess())
+  } catch (error) {
+    dispatch(orderFailure())
+  }
+}
 

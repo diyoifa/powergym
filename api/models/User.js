@@ -19,6 +19,10 @@ const UserSchema = new mongoose.Schema(
         isAdmin: {
             type: Boolean,
             default: false
+        },
+        img:{
+            type: String,
+            default: "https://th.bing.com/th/id/OIP.ymEUbl8s2t2yzvdNqwOCyAHaHa?pid=ImgDet&rs=1" 
         }
     },
     {

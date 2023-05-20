@@ -3,7 +3,8 @@ import Home from './Pages/Home/Home'
 import Contact from './Pages/contact/Contact'
 import NotFound from './Pages/notFound/Notfound'
 import Plans from './Pages/plans/Plans'
-import About from './Pages/about/About'
+
+// import About from './Pages/about/About'
 import Footer from './Components/Footer'
 import Ejercisios from './Pages/exercises/Ejercisios'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
@@ -14,7 +15,12 @@ import Product from './Pages/product/Product'
 import Cart from './Pages/cart/Cart'
 import Login from './Pages/login/Login'
 import Logout from './Pages/logout/Logout'
+import Register from './Pages/register/Register'
+import Pay from './Pages/pay/Pay'
 import { useSelector } from 'react-redux';
+import { Suspense, lazy } from 'react'
+
+const About = lazy(()=>import('./Pages/about/About'))
 // import {resetCartIfNeeded} from './redux/cartRedux'
 // import {resetUserIfNeeded} from './redux/userRedux'
 const App = () => {
@@ -45,7 +51,7 @@ const App = () => {
           <Navbar/>
           <Routes>
             <Route index element= {<Home/>}/>
-            <Route path='about' element= {<About/>}/>
+            <Route path='about' element= {<Suspense fallback={(<h1>cargnado...</h1>)}> <About/> </Suspense>} />
             <Route path='contact' element= {<Contact/>}/>
             <Route path='plans' element= {user===null? <Login/>:<Plans/>}/>
             <Route path='ejercicios' element= {user===null? <Login/>:<Ejercisios/>}/>
@@ -55,8 +61,10 @@ const App = () => {
             <Route path="/product/:id" element ={<Product/>}/>
             <Route path="/cart" element ={user===null? <Login/>:<Cart/>}/>
             {/* SI NO HAY UN USUARIO LOGEADO */}
-            <Route path="/login" element ={<Login/>}/>
-            <Route path="/logout" element ={<Logout/>}/>
+            <Route path="/login" element ={user===null?<Login/>:<Home/>}/>
+            <Route path="/register" element ={<Register/>}/>
+            <Route path="/pay" element ={<Pay/>}/>
+            <Route path="/logout" element ={!user?<Home/>:<Logout/>}/>
          </Routes>
          <Footer/>
         </BrowserRouter>
