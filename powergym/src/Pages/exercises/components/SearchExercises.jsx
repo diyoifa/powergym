@@ -4,7 +4,9 @@ import { exerciseOptions, fetchData } from '../utils/fetchData';
 import HorizontalScrollbar from './HorizontalScrollbar';
 import Header from "../../../Components/Header"
 import HeaderImage from "../../../images/header_bg_2.jpg"
+
 const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
+  
   const [search, setSearch] = useState('');
   const [bodyParts, setBodyParts] = useState([]);
 

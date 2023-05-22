@@ -3,17 +3,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getProducts } from '../../redux/apiCalls'
 import Header from '../../Components/Header'
-import HeaderImage from '../../images/header_bg_6.jpg'
+import HeaderImage from '../../images/productsHeader.jpg'
 import Card from '../../UI/Card'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { PacmanLoader } from 'react-spinners';
+import Pacman from '../../Components/PacmanLoader'
 import { useState } from 'react'
-import Pagination from '@mui/material/Pagination';
+// import Pagination from '@mui/material/Pagination';
 //import FavoriteIcon from '@mui/icons-material/Favorite';
 //import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import "./Products.css"
 import {Link} from 'react-router-dom';
+import Paginacíon from '../../Components/Paginacíon'
 
 const Products = () => {
     const dispatch = useDispatch()
@@ -28,7 +29,7 @@ const Products = () => {
     //console.log("🚀 products:", products)
 
     const paginate = (event, value) => {
-      //wii set a new value for the current page once it change
+      //ACTUALIZARÁ EL VALOR DE LA PAGINA ACTUAL
       setCurrentPage(value);
       // window.scrollTo({ top: 1800, behavior: 'smooth' });
     }
@@ -46,12 +47,13 @@ const Products = () => {
       <Header title = 'Nuestros Productos' image={HeaderImage}>
         Encuentra todo lo que necesitas para alcanzar tus metas fitness en nuestra sección de productos. Ofrecemos una amplia gama de equipos de ejercicio, accesorios y suplementos nutricionales de calidad premium. Ya sea que estés buscando mejorar tu fuerza, resistencia o flexibilidad, tenemos productos para todos los niveles de condición física. Descubre nuestra selección cuidadosamente elegida de productos de las marcas líderes en la industria del fitness y comienza tu camino hacia un estilo de vida más saludable hoy mismo
       </Header>
-      <div className="products">
-        <section className="container products__container">
+
+      {
+        loading 
+        ?(<Pacman/>) 
+        :(
+          <section className="container products__container">
           {
-              loading 
-              ?(<div> <PacmanLoader color="var(--color-secondary)" size={60}/> </div>) 
-              :(
                 currentProducts.map((product) => 
                   <Card key={product._id} className='product'>
                     <div className="circle"></div>
@@ -74,25 +76,33 @@ const Products = () => {
                       </div>  
                   </Card>
               )
-            )
           }
         </section>
-        <div className="pagination__products">
-        {products.length > 3 && (
-            <Pagination
-            //propiedades del componente
-              color="primary"
-              shape="rounded"
-              defaultPage={1}
-              count={Math.ceil(products.length / productsPerPage)}
-              page={currentPage}
-              //llamamos la funcion 
-              onChange={paginate}
-              size="large"
-            />
-          )}
-        </div>
-      </div>
+        )
+      }
+      {/* <div className="products"> */}
+        {/* <div className="pagination__products">
+          {products.length > 3 && (
+              <Pagination
+              //propiedades del componente
+                color="primary"
+                shape="rounded"
+                defaultPage={1}
+                count={Math.ceil(products.length / productsPerPage)}
+                page={currentPage}
+                //llamamos la funcion 
+                onChange={paginate}
+                size="large"
+              />
+            )}
+        </div> */}
+        <Paginacíon 
+        array={products} 
+        currentPage={currentPage} 
+        dataPerPage={productsPerPage}
+        paginate={paginate}
+        />
+      {/* </div> */}
     </>
   )
 }

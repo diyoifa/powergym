@@ -48,7 +48,7 @@ const Detail = ({ exerciseDetail }) => {
             <Stack key={item.id} direction='row' alignItems='center'> 
               <Button
                 sx={{
-                      background:'var(--color-gray-100)', 
+                      background:'var(--color-gray-200)', 
                       borderRadius:'50%',
                       width:'100px',
                       height:'100px'
@@ -56,10 +56,10 @@ const Detail = ({ exerciseDetail }) => {
                 
               >
                 <img src={item.icon}  alt={item.name} 
-                  style={{width:'50px', heigth:'50px'}}
+                  style={{width:'50px', heigth:'50px', }}
                 />
               </Button>
-              <Typography variant='h6' textTransform='capitalize'>
+              <Typography variant='h6' textTransform='capitalize' marginLeft="1rem">
                   {item.name}
               </Typography>
             </Stack>

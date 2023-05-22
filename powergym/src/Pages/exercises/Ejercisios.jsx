@@ -12,7 +12,7 @@ const Ejercisios = () => {
 
   return (
     <Box>
-      {/* <HeroBanner/> */}
+      {/* le pasamos estas props para no tener que crearlas repetitivamente dentro de cada component */}
       <SearchExercises 
         bodyPart = {bodyPart}
         setBodyPart = {setBodyPart}
@@ -24,7 +24,6 @@ const Ejercisios = () => {
         setExercises = {setExercises}
         bodyPart = {bodyPart}
       />
-      
     </Box>
   )
 }

@@ -1,7 +1,12 @@
 
+.order-container{
+    margin-top: 2rem;
+}
+
 .container h1{
     text-align: center;
     transition: var(--transition);
+    margin-top: 1rem;
 }
 .container h1:hover{
     color: var(--color-secondary);

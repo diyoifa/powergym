@@ -10,7 +10,7 @@ import OrganigramaImage from '../../images/organigrama.png'
 const About = () => {
   return (
       <>
-        <Header title = 'Acerca de' image={headerImage}>
+        <Header title = 'Acerca de powergym🏋️' image={headerImage}>
           Somos un pequeño gimnasio  fitness que proporciona equipos de última generación, programas de ejercicio y clases para ayudar a los clientes a alcanzar sus metas de salud y fitness. Nuestro enfoque se centra en la salud y el bienestar holísticos, y nos esforzamos por crear un ambiente acogedor y de apoyo para todos los clientes.        
         </Header>
         <section className="about__story">
