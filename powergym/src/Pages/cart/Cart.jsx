@@ -10,6 +10,8 @@ import './Cart.css'
 import swal from 'sweetalert';
 import {order} from '../../redux/apiCalls'
 import { useNavigate } from 'react-router-dom';
+import Header from '../../Components/Header'
+import headerImage from '../../images/header_bg_7.jpg'
 
 const Cart = () => {
     const quantity = useSelector(state => state.cart.quantity)
@@ -31,7 +33,8 @@ const Cart = () => {
             return
         } 
         order({userId, products, amount}, dispatch)
-        navigate('/pay')
+        navigate(`/pay/${amount}`)
+        window.scroll({ top: -1800, left: 100, behavior: 'smooth'})
 
     }
     const handleDeleteProduct = productId => {
@@ -40,8 +43,11 @@ const Cart = () => {
       };
   return (
     <>
+        <Header title={"🛍️TU CARRITO💌🐓"} image={headerImage}>
+            aqui estan todos los productos que agregaste, puedes eliminar los productos del carrito que desees, tambien puedes dar click en volver a comprar para agregar mas productos a tu carrito de compras
+        </Header>
       <section className="container wrapper__cart">
-            <h1>🛍️TU CARRITO💌🐓</h1>
+            {/* <h1>🛍️TU CARRITO💌🐓</h1> */}
             <div className="top__cart">
                 <div className="top-button-left__cart">
                     <Link to="/products">
@@ -61,7 +67,7 @@ const Cart = () => {
                     {
                         cart.products?.map(product => 
                             <div className="card product__cart" key={product._id}>
-                                <div className="product-detail__cart" key={product._id}>
+                                <div className="product-detail__cart" key={product._id + product.title}>
                                     <div className="product-detail-img__cart">
                                         <img src={product.img} alt="" />
                                     </div>
@@ -71,7 +77,7 @@ const Cart = () => {
                                         <h4 style={{marginBottom: "1rem", color:"var(--color-secondary)"}}> Precio: 💸${product.price} </h4>
                                     </div>
                                 </div>
-                                <div className="price-detail__cart" key={product._id}>
+                                <div className="price-detail__cart" key={product._id + product.price}>
                                     <div className="product-amount__cart">
                                         {/* <Remove style={{cursor: "pointer", color:"var(--color-secondary)"}} onClick = {()=>{dispatch(addQuantity(product))}}/> */}
                                             <p className='quantity'>Cantidad:  </p>

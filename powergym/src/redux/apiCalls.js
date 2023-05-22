@@ -14,7 +14,10 @@ import {
   registerFailure,
   orderStart,
   orderSuccess,
-  orderFailure  
+  orderFailure,
+  // getOrderStart,
+  // getOrderSuccess,
+  // getOrderFailure  
 } from "./userRedux";
 
 //REGISTRARSE
@@ -82,4 +85,18 @@ export const order = async(order, dispatch)=>{
     dispatch(orderFailure())
   }
 }
+
+//OBTENER ORDENES POR ID
+// export const getOrders = async(id,dispatch)=>{
+//   dispatch(getOrderStart())
+//   try {
+//     const res = await privateRequest.get(`/orders/${id}`)
+//     console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ res:", res)
+//     dispatch(getOrderSuccess())
+//   } catch (error) {
+//     console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ error:", error)
+//     dispatch(getOrderFailure())
+//   }
+// }
+
 

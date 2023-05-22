@@ -5,6 +5,9 @@ const OrderSchema = new mongoose.Schema(
         userId:{type: String, required: true},
         products: [
             {
+                title:{
+                    type: String
+                },
                 _id:{
                     type:String
                 },

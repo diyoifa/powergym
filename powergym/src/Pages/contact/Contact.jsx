@@ -1,7 +1,7 @@
 import React from 'react'
 import './Contact.css'
 import Header from '../../Components/Header'
-import HeaderImage from '../../images/header_bg_3.jpg'
+import HeaderImage from '../../images/background_login.jpg'
 import {AiOutlineMail} from 'react-icons/ai'
 import {BsDiscord, BsWhatsapp} from 'react-icons/bs'
 import QrImage from '../../images/qr.jpg'

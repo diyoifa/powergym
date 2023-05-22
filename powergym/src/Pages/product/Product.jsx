@@ -11,6 +11,9 @@ import {addProduct} from '../../redux/cartRedux'
 import { useSelector } from 'react-redux'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import swal from 'sweetalert';
+import { PacmanLoader } from 'react-spinners';
+import Header from '../../Components/Header';
+import headerImage from '../../images/header_bg_8.jpg'
 
 //import {getProduct} from "../../redux/apiCalls"
 const Product = () => {
@@ -21,6 +24,7 @@ const Product = () => {
     const [quantity, setQuantity] = useState(1)
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart);
+    const [loading, setLoading] = useState(false)
     //recorre el array y me devuelve true si lo encuentra
     const isProductInCart = cart.products.some(item => item._id === product._id);
     //console.log("🚀 ~ file: Product.jsx:27 ~ Product ~ isProductInCart:", isProductInCart)
@@ -35,7 +39,9 @@ const Product = () => {
     if (isProductInCart) {
       swal("Error", "El producto ya fue agregado en el carrito", "error");
     } else {
+      setLoading(true);
       dispatch(addProduct({ ...product, quantity }));
+      setLoading(false);
       swal("Buen trabajo!", "Producto agregado correctamente!", "success");
     }
   };
@@ -58,33 +64,45 @@ const Product = () => {
 
   return (
     <>
-      <section className="container product__container">
-          <div className="card image__container">
-            <img src={product?.img} alt={product?.title} />
-          </div>
-          <div className="info_container">
-            <h1 style={{color: "var(--color-primary)"}}>{product?.title}💪</h1>
-            <h4>{product?.desc}</h4>
-            <h2>$💵{product?.price}</h2>
-          
-            <div className="add_container">
-              <div className="amount__container">
-              <Remove style={{cursor: "pointer", color:"var(--color-secondary)"}} onClick = {()=>setQuantity(quantity === 1 ? 1 : quantity - 1)} />
-                <p className="amount">{quantity}</p>
-              <Add style={{cursor: "pointer", color:"var(--color-secondary)"}} onClick = {()=>setQuantity(quantity + 1)}/>
-              </div>
-            </div>
-            <button className='btn' onClick={handleClick}>💙AGREGAR AL CARRITO💙</button>
-            <Link to={"/products"}>
-            <KeyboardBackspaceIcon 
-              style={{
-                width: "80px",
-                height: "50px",
-              }}
-            />
-            </Link>
-          </div>
-      </section>
+      <Header title={"La mejor "+product.title+" del mercado😋"} image={headerImage}>
+      Desata tu potencial con nuestra {product.title} fitness de vanguardia. Diseñada para mejorar fuerza, resistencia y recuperación muscular, te ayudará a alcanzar tus metas fitness de manera efectiva y eficiente.
+      </Header>
+
+      {
+        loading
+        ?(<div> <PacmanLoader color="var(--color-secondary)" size={60}/> </div>) 
+        :(
+            <section className="container product__container">
+                      <div className="card image__container">
+                        <img src={product?.img} alt={product?.title} />
+                      </div>
+                      <div className="info_container">
+                        <h1 style={{color: "var(--color-primary)"}}>{product?.title}💪</h1>
+                        <h4>{product?.desc}</h4>
+                        <h2>$💵{product?.price}</h2>
+                      
+                        <div className="add_container">
+                          <div className="amount__container">
+                          <Remove style={{cursor: "pointer", color:"var(--color-secondary)"}} onClick = {()=>setQuantity(quantity === 1 ? 1 : quantity - 1)} />
+                            <p className="amount">{quantity}</p>
+                          <Add style={{cursor: "pointer", color:"var(--color-secondary)"}} onClick = {()=>setQuantity(quantity + 1)}/>
+                          </div>
+                        </div>
+                        <button className='btn' onClick={handleClick}>💙AGREGAR AL CARRITO💙</button>
+                        <Link to={"/products"}>
+                        <KeyboardBackspaceIcon 
+                          style={{
+                            width: "80px",
+                            height: "50px",
+                          }}
+                        />
+                        </Link>
+                      </div>
+                  </section>
+        )
+      }
+
+      
     </>
   )
 }

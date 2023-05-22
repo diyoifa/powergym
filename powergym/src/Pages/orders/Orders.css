@@ -1,0 +1,46 @@
+
+.container h1{
+    text-align: center;
+    transition: var(--transition);
+}
+.container h1:hover{
+    color: var(--color-secondary);
+    transform: scale(1.1);
+}
+
+.orders-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+
+.orders-card{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    text-align: left;
+    width: 32%;
+}
+
+.orders-card__products{
+    border-radius: 1rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 0.5rem;
+}
+
+@media screen and (max-width:414px){
+    .orders-container{
+        flex-direction: column;
+    }
+
+    .orders-card{
+        width: 90%;
+    }
+}

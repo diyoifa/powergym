@@ -32,7 +32,6 @@ const verifyTokenAndAuthorization = (req, res, next)=>{
 }
 
 //validar que sea admin
-
 const verifyTokenAndAdmin = (req, res, next) => {
     verifyToken(req, res, ()=>{
         //si es admin

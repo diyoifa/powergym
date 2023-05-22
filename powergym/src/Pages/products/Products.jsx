@@ -18,7 +18,7 @@ import {Link} from 'react-router-dom';
 const Products = () => {
     const dispatch = useDispatch()
     const products = useSelector((state) => state.product.products);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 3
     //tomamos el ultimo elemento
@@ -50,7 +50,7 @@ const Products = () => {
         <section className="container products__container">
           {
               loading 
-              ?(<div className='spinner__container'> <PacmanLoader color="var(--color-secondary)" size={60}/> </div>) 
+              ?(<div> <PacmanLoader color="var(--color-secondary)" size={60}/> </div>) 
               :(
                 currentProducts.map((product) => 
                   <Card key={product._id} className='product'>

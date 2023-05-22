@@ -87,7 +87,7 @@ return (
         <ul className={`nav__links-profile ${isProfileOptionShowing ? 'show__nav-profile' : 'hide__nav-profile'}`}>
             <li>
               <NavLink 
-                to={'/'} 
+                to={'/orders'} 
                 onClick={()=> {setIsProfileOptionShowing( prev => !prev )
                 window.scroll({ top: -1800, left: 100, behavior: 'smooth' })
                 }}

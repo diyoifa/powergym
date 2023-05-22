@@ -4,7 +4,9 @@ import Header from '../../Components/Header'
 import HeaderImage from '../../images/header_bg_5.jpg'
 import {plans} from '../../data'
 import Card from '../../UI/Card'
+import { Link, useNavigate } from 'react-router-dom'
 const Plans = () => {
+  const navigate = useNavigate()
   return (
     <>
       <Header title='Nuestros Planes' image={HeaderImage}>
@@ -25,7 +27,9 @@ const Plans = () => {
                         </p>
                     )
                   }
-                  <button onClick={() => window.open('https://wa.link/wtnqzo', '_blank')}  className='btn lg' >Elegir</button>
+                  <Link to={`/pay/${price}`}>
+                    <button onClick={() => window.scroll({ top: -1800, left: 100, behavior: 'smooth'})}  className='btn lg' >Elegir</button>
+                  </Link>
               </Card>
             )
           }

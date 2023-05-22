@@ -17,6 +17,7 @@ import Login from './Pages/login/Login'
 import Logout from './Pages/logout/Logout'
 import Register from './Pages/register/Register'
 import Pay from './Pages/pay/Pay'
+import Orders from './Pages/orders/Orders'
 import { useSelector } from 'react-redux';
 import { Suspense, lazy } from 'react'
 
@@ -63,7 +64,8 @@ const App = () => {
             {/* SI NO HAY UN USUARIO LOGEADO */}
             <Route path="/login" element ={user===null?<Login/>:<Home/>}/>
             <Route path="/register" element ={<Register/>}/>
-            <Route path="/pay" element ={<Pay/>}/>
+            <Route path="/pay/:amount" element ={<Pay/>}/>
+            <Route path="/orders" element ={<Orders/>}/>
             <Route path="/logout" element ={!user?<Home/>:<Logout/>}/>
          </Routes>
          <Footer/>
