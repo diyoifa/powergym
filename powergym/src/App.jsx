@@ -3,7 +3,6 @@ import Home from './Pages/Home/Home'
 import Contact from './Pages/contact/Contact'
 import NotFound from './Pages/notFound/Notfound'
 import Plans from './Pages/plans/Plans'
-
 // import About from './Pages/about/About'
 import Footer from './Components/Footer'
 import Ejercisios from './Pages/exercises/Ejercisios'
