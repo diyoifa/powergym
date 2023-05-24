@@ -10,16 +10,21 @@ import payDaviplataImg from '../../images/pay_daviplata.jpg'
 import Header from '../../Components/Header'
 //import HeaderImage from '../../images/header_bg_pay2.jpg'
 import HeaderImage from '../../images/header_bg_3.jpg'
+import { deleteOrder} from '../../redux/apiCalls';
 
 const Pay = () => {
 
-    useSelector(state => state.cart); // Acceder al estado de Redux
+    const user = useSelector(state => state.user); // Acceder al estado de Redux
+    const lastOrderId = user.order._id
+    console.log("🚀 ~ file: Pay.jsx:19 ~ Pay ~ lastOrderId:", lastOrderId)
+    
     const location = useLocation()
     console.log("🚀 ~ file: Pay.jsx:12 ~ Pay ~ location:", location)
     const amount = location.pathname.split("/")[2]
     console.log("🚀 ~ file: Pay.jsx:14 ~ Pay ~ amount:", amount)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    
     const handleClickPaid = (e)=>{
         //evitar evento por default para ejecutar los dispatch para cambiar estados
         e.preventDefault()
@@ -28,7 +33,14 @@ const Pay = () => {
         navigate('/')
         window.scroll({ top: -1800, left: 100, behavior: 'smooth'})
     }
-  
+
+    const handleClickCancel = (e)=>{
+        //eliminar la orden del usuario
+        e.preventDefault()
+        deleteOrder(lastOrderId, dispatch)
+        navigate('/cart')
+    }
+
     return (
         <>
             <Header title={"Metodos de pago💳"} image={HeaderImage}>
@@ -60,7 +72,7 @@ const Pay = () => {
                             </button>
                         </Link>
                         <Link to={"/cart"}>
-                            <button className="btn">
+                            <button className="btn" onClick={handleClickCancel} >
                                 Cancelar
                             </button>
                         </Link>

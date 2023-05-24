@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getOrderStart,
-  getOrderSuccess,
-  getOrderFailure,
+  getOrdersStart,
+  getOrdersSuccess,
+  getOrdersFailure,
 } from "../../redux/userRedux";
 import { privateRequest } from "../../requestMethods";
 import Card from "../../UI/Card";
@@ -48,20 +48,20 @@ const Orders = () => {
     };
     return fechaHora.toLocaleString(undefined, opciones);
   };
-
+  //obtener ordenes
   useEffect(() => {
     setLoading(true);
     const getOrders = async (dispatch) => {
-      dispatch(getOrderStart());
+      dispatch(getOrdersStart());
       try {
         const res = await privateRequest.get(`/orders/${userId}`);
         console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ res:", res);
-        setOrders(res.data);
-        dispatch(getOrderSuccess());
+        setOrders(res?.data);
+        dispatch(getOrdersSuccess(res.data));
         setLoading(false);
       } catch (error) {
         console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ error:", error);
-        dispatch(getOrderFailure());
+        dispatch(getOrdersFailure());
       }
     };
     getOrders(dispatch);
@@ -80,9 +80,10 @@ const Orders = () => {
           <section className="order-container">
             {/* <h1>Tus Compras</h1> */}
             <div className="container orders-container">
-              {currentOrders.map((order) => (
+              {
+                orders.length > 0? currentOrders.map((order) => (
                 // const {amount, createdAt, products, status, _id} = order
-                <Card className="orders-card" key={order.crea}>
+                <Card className="orders-card" key={order.createdAt}>
                   <h4>ID: {order._id}</h4>
                   <h4>Fecha: {convertirFechaHora(order.createdAt)}</h4>
                   <h4>Productos</h4>
@@ -96,7 +97,10 @@ const Orders = () => {
                   <h4>Estado: {order.status}</h4>
                   <h3>Total: $💵{order.amount}</h3>
                 </Card>
-              ))}
+              )
+              )
+              : (<h1>No se encontraron ordenes</h1>)
+            }
             </div>
           </section>
         )}

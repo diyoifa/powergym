@@ -21,6 +21,7 @@ export const productSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+
     //DELETE
     deleteProductStart: (state) => {
       state.isFetching = true;
@@ -46,8 +47,9 @@ export const productSlice = createSlice({
     updateProductSuccess: (state, action) => {
       state.isFetching = false;
       state.products[
+        // encontrar el índice del elemento que cumple con la condición 
         state.products.findIndex((item) => item._id === action.payload.id)
-      ] = action.payload.product;
+      ] = action.payload.product; //actualizar ese elemento
     },
     updateProductFailure: (state) => {
       state.isFetching = false;

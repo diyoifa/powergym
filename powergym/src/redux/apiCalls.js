@@ -12,12 +12,15 @@ import {
   registerStart,
   registerSuccess,
   registerFailure,
-  orderStart,
-  orderSuccess,
-  orderFailure,
-  // getOrderStart,
-  // getOrderSuccess,
-  // getOrderFailure  
+  createOrdersStart,
+  createOrdersSuccess,
+  createOrdersFailure,
+  // getOrdersStart,
+  // getOrdersSuccess,
+  // getOrdersFailure,
+  deleteOrderStart,
+  deleteOrderSuccess,
+  deleteOrderFailure,  
 } from "./userRedux";
 
 //REGISTRARSE
@@ -76,27 +79,45 @@ export const getProducts = async(dispatch)=>{
 
 //CREAR ORDEN
 export const order = async(order, dispatch)=>{
-  dispatch(orderStart())
+  dispatch(createOrdersStart())
   try {
     const res = await privateRequest.post("/orders", order)
     console.log("🚀 ~ file: apiCalls.js:79 ~ order ~ res:", res)
-    dispatch(orderSuccess())
+    dispatch(createOrdersSuccess(res.data))
   } catch (error) {
-    dispatch(orderFailure())
+    dispatch(createOrdersFailure())
   }
 }
 
+//ELIMINAR ORDEN POR ID
+export const deleteOrder = async(id, dispatch)=>{
+   dispatch(deleteOrderStart())
+  try {
+    const res = await privateRequest.delete(`/orders/${id}`)
+    console.log("🚀 ~ file: apiCalls.js:98 ~ deleteOrder ~ res:", res)
+    // console.log("🚀 ~ file: apiCalls.js:104 ~ deleteOrder ~ id:", id)
+    dispatch(deleteOrderSuccess(id))
+
+  } catch (error) {
+    console.log("🚀 ~ file: apiCalls.js:99 ~ deleteOrder ~ error:", error)
+    dispatch(deleteOrderFailure())
+  }
+    
+}
+
 //OBTENER ORDENES POR ID
-// export const getOrders = async(id,dispatch)=>{
-//   dispatch(getOrderStart())
-//   try {
-//     const res = await privateRequest.get(`/orders/${id}`)
-//     console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ res:", res)
-//     dispatch(getOrderSuccess())
-//   } catch (error) {
-//     console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ error:", error)
-//     dispatch(getOrderFailure())
-//   }
-// }
+// export const getOrders = async (id, dispatch) => {
+//       dispatch(getOrdersStart());
+//       try {
+//         const res = await privateRequest.get(`/orders/${id}`);
+//         console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ res:", res);
+//         // setOrders(res?.data);
+//         dispatch(getOrdersSuccess(res.data));
+//         // setLoading(false);
+//       } catch (error) {
+//         console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ error:", error);
+//         dispatch(getOrdersFailure());
+//       }
+// };
 
 

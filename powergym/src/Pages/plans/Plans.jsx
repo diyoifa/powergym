@@ -4,9 +4,9 @@ import Header from '../../Components/Header'
 import HeaderImage from '../../images/header_bg_5.jpg'
 import {plans} from '../../data'
 import Card from '../../UI/Card'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 const Plans = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   return (
     <>
       <Header title='Nuestros Planes' image={HeaderImage}>

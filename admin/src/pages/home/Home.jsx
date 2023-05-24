@@ -1,17 +1,65 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import Chart from "../../components/chart/Chart";
+import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
+import "./home.css";
+//import { userData } from "../../dummyData";
+import WidgetSm from "../../components/widgetSm/WidgetSm";
+import WidgetLg from "../../components/widgetLg/WidgetLg";
+import { useEffect, useMemo, useState } from "react";
+import { privateRequest } from "../../requestMethods";
 
-const Home = () => {
+export default function Home() {
+  const [userStats, setUserStats] = useState([]);
+
+  const MONTHS = useMemo(
+    () => [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Agu",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    []
+  );
+
+  useEffect(() => {
+    const getStats = async () => {
+      try {
+        const res = await privateRequest.get("/users/stats");
+        console.log("🚀 ~ file: Home.jsx:36 ~ getStats ~ res:", res)
+        
+        res.data.map((item) =>
+          setUserStats((prev) => [
+            ...prev,
+            { name: MONTHS[item._id - 1], "Active User": item.total },
+          ])
+        );
+      } catch {}
+    };
+    getStats();
+  }, [MONTHS]);
+
+  
+
   return (
-    <div>
-      <h1>PANEL DE ADMINISTRADOR</h1>
-      <Link to='/logout'>
-        <button>
-            Cerrar sesion
-        </button>
-      </Link>
+    <div className="home">
+      <FeaturedInfo/>
+      <Chart
+        data={userStats}
+        title="Actividad de usuarios"
+        grid
+        dataKey="Active User"
+      />
+      <div className="homeWidgets">
+        <WidgetSm />
+        <WidgetLg />
+      </div>
     </div>
-  )
+  );
 }
-
-export default Home

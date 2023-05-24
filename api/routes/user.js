@@ -20,6 +20,28 @@ router.post("/userPost", (req, res)=>
 )
 */
 
+//MODIFICAR
+router.put("/:id", verifyTokenAndAuthorization, async(req, res)=>{
+    if(req.body.password){
+        req.body.password =  CryptoJS.AES.encrypt(
+            req.body.password, 
+            process.env.PASS_SEC
+            ).toString()
+    }
+    try {
+        const updatedUser = await User.findByIdAndUpdate(req.params.id,
+            {
+                $set: req.body
+            }, 
+            {
+                new: true
+            }
+        )
+        res.status(200).json(updatedUser)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
 
 //ELIMINAR UN USUARIO
 router.delete("/:id", verifyTokenAndAuthorization, async(req, res)=>{
@@ -49,6 +71,18 @@ router.get("/", verifyTokenAndAdmin, async(req, res)=>{
         res.status(200).json(users)
     } catch (error) {
         console.log("🚀 ~ file: user.js:41 ~ router.get ~ error:", error)
+        res.status(500).json(error)
+    }
+})
+
+//OBTENER UN USUARIO
+router.get('/find/:id', verifyTokenAndAdmin, async(req, res)=>{
+    try {
+        const user = await User.findById(req.params.id)
+        const {password, ...others} = user._doc
+        res.status(200).json(others)
+
+    } catch (error) {
         res.status(500).json(error)
     }
 })

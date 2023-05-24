@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema(
         username: {
             type: String,
             required: true,
-            unique: true,
+            unique: false,
         },
         email: {
             type: String,
@@ -23,6 +23,15 @@ const UserSchema = new mongoose.Schema(
         img:{
             type: String,
             default: "https://th.bing.com/th/id/OIP.ymEUbl8s2t2yzvdNqwOCyAHaHa?pid=ImgDet&rs=1" 
+        },
+        fullname:{
+            type: String
+        },
+        phone:{
+            type: String
+        },
+        address:{
+            type: String
         }
     },
     {

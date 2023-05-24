@@ -35,7 +35,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //DELETE
-router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
   try {
     await Order.findByIdAndDelete(req.params.id);
     res.status(200).json("Orden eliminada...");
@@ -47,23 +47,29 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
 
 //GET USER ORDERS
 router.get("/:userId", verifyToken, async (req, res) => {
+  const query = req.query.last
   try {
-    const orders = await Order.find({ userId: req.params.userId });
+    const orders =  query? await Order.find({ userId: req.params.userId }).sort({_id:-1}).limit(5)
+    :await Order.find({ userId: req.params.userId })
     res.status(200).json(orders);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// //GET ALL
+//OBTENER TODAS O LAS ULTIMAS 5 ORDENES
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
+  const query = req.query.new;
   try {
-    const orders = await Order.find();
+    //si new es true solo retorne los ultimos 5, sino todos
+    const orders = query ? await Order.find().sort({_id: -1}).limit(5) 
+    : await Order.find()
     res.status(200).json(orders);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 // GET MONTHLY INCOME
 router.get("/income", verifyTokenAndAdmin, async (req, res) => {
@@ -100,4 +106,6 @@ router.get("/income", verifyTokenAndAdmin, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 module.exports = router;

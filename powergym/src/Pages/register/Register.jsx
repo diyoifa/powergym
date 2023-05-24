@@ -15,6 +15,9 @@ import app from "../../firebase";
 
 const Register = () => {
     // const [inputs, setInputs] = useState({})
+    const[fullname, setFullname] = useState("") 
+    const[phone, setPhone] = useState("") 
+    const[address, setAddress] = useState("") 
     const[username, setUsername] = useState("") 
     const[password, setPassword] = useState("")
     const[email, setEmail] = useState("")
@@ -43,6 +46,18 @@ const Register = () => {
             swal("Lo siento!", "debes llenar todas las casillas!🥴", "error")
             return;
         }
+        if (!fullname.trim()) {
+          swal("Lo siento!", "debes llenar todas las casillas!🥴", "error")
+          return;
+        }
+      if (!phone.trim()) {
+          swal("Lo siento!", "debes llenar todas las casillas!🥴", "error")
+          return;
+      }
+      if(!address.trim){
+          swal("Lo siento!", "debes llenar todas las casillas!🥴", "error")
+          return;
+      }
 
         const fileName = new Date().getTime() + file.name;
         // console.log("🚀 ~ file: Register.jsx:24 ~ handleClick ~ fileName:", fileName)
@@ -81,12 +96,11 @@ const Register = () => {
           // Handle successful uploads on complete
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            const user = { username, password, email, img: downloadURL};
+            const user = { username, password, email, img: downloadURL, fullname, phone, address};
             register(dispatch, user)
           });
         }
       );
-
 
     }
 
@@ -95,12 +109,34 @@ const Register = () => {
         <div className="card register-wrapper">
             <h1>Registrate</h1>
             <form >
+                <input
+                  name='fullname'
+                  type="text" 
+                  placeholder="Nombre completo"
+                  onChange={(e)=>{setFullname(e.target.value)}}
+                />
+
+                <input
+                  name='phone'
+                  type="text" 
+                  placeholder="Telefono" 
+                  onChange={(e)=>{setPhone(e.target.value)}}
+                />
+
+                <input 
+                  name='address'
+                  type="text" 
+                  placeholder="Direccion"
+                  onChange={(e)=>{setAddress(e.target.value)}}
+                />    
+
                 <input 
                     name='username'
                     type="text" 
                     placeholder='usuario'
                     onChange={(e)=>{setUsername(e.target.value)}}
                 />
+    
                 <input 
                     name='email'
                     type="email" 
@@ -113,7 +149,8 @@ const Register = () => {
                     placeholder='contraseña'
                     onChange={(e)=>{setPassword(e.target.value)}}
                 />
-                <label >Imagen</label>
+
+                <label form='file'>Imagen</label>
                 <input 
                     name='img'
                     id="file"

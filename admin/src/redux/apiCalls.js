@@ -1,4 +1,3 @@
-import { deleteUserStart, deleteUserSuccess, deleteUserFailure, getUsersSuccess, loginFailure, loginStart, loginSuccess } from "./userRedux";
 import { publicRequest, privateRequest } from "../requestMethods";
 import {
   getProductFailure,
@@ -13,8 +12,22 @@ import {
   addProductFailure,
   addProductStart,
   addProductSuccess,
-  
 } from "./productRedux";
+
+import { 
+  deleteUserStart, 
+  deleteUserSuccess, 
+  deleteUserFailure, 
+  getUsersSuccess, 
+  loginFailure, 
+  loginStart, 
+  loginSuccess,
+  updateUsersStart,
+  updateUserSuccess,
+  updateUsersFailure
+} from "./userRedux";
+  
+
 
 //Entrar
 export const login = async (dispatch, user) => {
@@ -47,7 +60,7 @@ export const deleteProduct = async (id, dispatch) => {
   }
 };
 
-// update
+// MODIFICAR PRODUCTO
 export const updateProduct = async (id, product, dispatch) => {
   dispatch(updateProductStart());
   try {
@@ -68,9 +81,9 @@ export const addProduct = async (product, dispatch) => {
   }
 };
 
-//Usuarios
+//USUARIOS
 
-//Obtener usuarios
+//OBTENER TODOS
 export const getUsers = async (dispatch)=>{
   dispatch(loginStart());
   try {
@@ -81,7 +94,20 @@ export const getUsers = async (dispatch)=>{
   }
 }
 
-//eliminar
+//MODIFICAR USUARIO
+export const updateUser = async (id, user, dispatch) => {
+  dispatch(updateUsersStart());
+  try {
+    const res = await privateRequest.put(`/users/${id}`, user);
+    dispatch(updateUserSuccess(res.data));
+    //console.log('entré')
+  } catch (err) {
+    dispatch(updateUsersFailure());
+  }
+};
+//OBTENER POR ID
+
+//ELIMINAR
 export const deleteUser = async (id, dispatch) => {
   dispatch(deleteUserStart());
   try {
@@ -96,7 +122,7 @@ export const deleteUser = async (id, dispatch) => {
 // export const getUserTransaccion = async(id, dispatch)=>{
 //   dispatch(loginStart())
 //   try {
-//     const res = await userRequest.get(`/find/${id}`)
+//     const res = await privateRequest.get(`users/find/${id}`)
 //     dispatch()
 //   } catch (error) {
     

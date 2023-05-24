@@ -35,7 +35,6 @@ const Cart = () => {
         order({userId, products, amount}, dispatch)
         navigate(`/pay/${amount}`)
         window.scroll({ top: -1800, left: 100, behavior: 'smooth'})
-
     }
     const handleDeleteProduct = productId => {
         dispatch(deleteProductSuccess(productId));

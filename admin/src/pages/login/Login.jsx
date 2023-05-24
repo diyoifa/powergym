@@ -14,13 +14,16 @@ const Login = () => {
 
   return (
     <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+    style={{
+      height: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      background: "url('https://th.bing.com/th/id/OIG.l9JD5p60KYqGdPuOcqbf?pid=ImgGn') no-repeat center center fixed",
+      backgroundSize: "cover",
+      opacity: 0.8
+    }}
     >
       <input
         style={{ padding: 10, marginBottom: 20 }}

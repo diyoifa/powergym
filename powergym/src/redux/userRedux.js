@@ -6,6 +6,8 @@ const userSlice = createSlice({
     currentUser: null,
     isFetching: false,
     error: false,
+    //orders: [],
+    order: null //ultima orden creada
   },
   reducers: {
     loginStart: (state) => {
@@ -25,10 +27,11 @@ const userSlice = createSlice({
       state.isFetching = true;
     },
 
-    logoutSuccess:(state) => {
-      state.isFetching = false;
-      state.currentUser = null;
+    logoutSuccess: (state) => {
+      state.isFetching = false
+      state.currentUser = null
       state.error = false
+      state.orders = []
     },
 
     logoutFailure: (state) => {
@@ -49,32 +52,55 @@ const userSlice = createSlice({
       state.error = true;
     },
 
-    orderStart: (state) => {
+    createOrdersStart: (state) => {
       state.isFetching = true;
     },
-    orderSuccess: (state, action) => {
-      state.isFetching = false;
-      // state.currentUser = action.payload;
+    createOrdersSuccess: (state, action) => {
+      state.isFetching = false
+       state.order = action.payload
       state.error = false
     },
-    orderFailure: (state) => {
+    createOrdersFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
 
-    getOrderStart: (state) => {
+    getOrdersStart: (state) => {
       state.isFetching = true;
     },
-    
-    getOrderSuccess: (state, action) => {
+
+    getOrdersSuccess: (state, action) => {
       state.isFetching = false;
-      // state.currentUser = action.payload;
+      state.orders = action.payload
       state.error = false
     },
-    getOrderFailure: (state) => {
+    getOrdersFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
+
+    deleteOrderStart: (state) => {
+      state.isFetching = true
+    },
+
+    deleteOrderSuccess: (state, action) => {
+      state.isFetching = false;
+      // const orderId = action.payload;
+      // console.log("🚀 ~ file: userRedux.js:90 ~ orderId:", orderId);
+      // if (state.orders.length === 0) {
+      //   state.order = null;
+      // } else {
+      //   state.orders = state.orders?.filter((order) => order._id !== orderId);
+      // }
+      
+      state.error = false;
+    },
+    
+    deleteOrderFailure: (state) => {
+      state.isFetching = false
+      state.error = true
+    },
+
 
     // resetUserIfNeeded: (state) => {
     //   if (state.isFetching === false) {
@@ -82,28 +108,31 @@ const userSlice = createSlice({
     //     state.error = false
     //   }
     // },
-    resetError: (state)=>{
+    resetError: (state) => {
       state.error = false;
     }
   },
 });
 
-export const { 
-  loginStart, 
-  loginSuccess, 
-  loginFailure, 
+export const {
+  loginStart,
+  loginSuccess,
+  loginFailure,
   // resetUserIfNeeded, 
-  logoutSuccess, 
-  resetError, 
+  logoutSuccess,
+  resetError,
   registerStart,
   registerSuccess,
   registerFailure,
-  orderStart,
-  orderSuccess,
-  orderFailure,
-  getOrderStart,
-  getOrderSuccess,
-  getOrderFailure
+  createOrdersStart,
+  createOrdersSuccess,
+  createOrdersFailure,
+  getOrdersStart,
+  getOrdersSuccess,
+  getOrdersFailure,
+  deleteOrderStart,
+  deleteOrderSuccess,
+  deleteOrderFailure,
 
 } = userSlice.actions;
 export default userSlice.reducer;
