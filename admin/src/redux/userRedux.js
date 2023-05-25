@@ -53,21 +53,22 @@ const userSlice = createSlice({
     deleteUserSuccess: (state, action) => {
       state.isFetching = false;
       //elimina un elemento en el indice escojido
-      state.products.splice(
-        state.products.findIndex((item) => item._id === action.payload),
+      state.users.splice(
+        state.users.findIndex((item) => item._id === action.payload),
         1
       )
+      state.error = false
     },
     deleteUserFailure: (state) => {
       state.isFetching = false
       state.error = true
     },
 
-    updateUsersStart: (state) => {
+    updateOrderStart: (state) => {
       state.isFetching = true
     },
 
-    updateUserSuccess: (state, action)=>{
+    updateOrderSuccess: (state, action) => {
       state.isFetching = false
       state.users[
         // encontrar el índice del elemento que cumple con la condición 
@@ -75,12 +76,48 @@ const userSlice = createSlice({
       ] = action.payload.user; //actualizar ese elemento
     },
 
-    updateUsersFailure: (state) => {
+    updateOrderFailure: (state) => {
       state.isFetching = false
       state.error = true
     },
-    
 
+    getOrderStart: (state) => {
+      state.isFetching = true
+    },
+
+    getOrderSuccess: (state) => {
+      state.isFetching = false
+      state.error = false
+    },
+
+    getOrderFailure: (state) => {
+      state.isFetching = false
+      state.error = true
+    },
+
+    getOrdersStart: (state) => {
+      state.isFetching = true;
+    },
+
+    getOrdersSuccess: (state, action) => {
+      state.isFetching = false;
+      // state.orders = action.payload
+      state.error = false
+    },
+    getOrdersFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    deleteOrderStart: (state) => {
+      state.isFetching = true
+    },
+    deleteOrderSuccess: (state) => {
+      state.isFetching = false
+      state.error = false
+    },
+    deleteOrderFailure: (state) => {
+      state.error = true
+    }
 
   },
 });
@@ -96,8 +133,17 @@ export const {
   getUsersStart,
   getUsersSuccess,
   getUsersFailure,
-  updateUsersStart,
-  updateUserSuccess,
-  updateUsersFailure
+  updateOrderStart,
+  updateOrderSuccess,
+  updateOrderFailure,
+  getOrdersStart,
+  getOrdersSuccess,
+  getOrdersFailure,
+  getOrderStart,
+  getOrderSuccess,
+  getOrderFailure,
+  deleteOrderStart,
+  deleteOrderSuccess,
+  deleteOrderFailure
 } = userSlice.actions;
 export default userSlice.reducer;

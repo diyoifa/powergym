@@ -15,12 +15,15 @@ import {
   createOrdersStart,
   createOrdersSuccess,
   createOrdersFailure,
-  // getOrdersStart,
-  // getOrdersSuccess,
-  // getOrdersFailure,
+  // getOrderStart,
+  // getOrderSuccess,
+  // getOrderFailure,
   deleteOrderStart,
   deleteOrderSuccess,
   deleteOrderFailure,  
+//   deleteUserStart,
+//   deleteUserSuccess,
+// deleteUserFailure
 } from "./userRedux";
 
 //REGISTRARSE
@@ -107,17 +110,31 @@ export const deleteOrder = async(id, dispatch)=>{
 
 //OBTENER ORDENES POR ID
 // export const getOrders = async (id, dispatch) => {
-//       dispatch(getOrdersStart());
+//       dispatch(getOrderStart());
 //       try {
 //         const res = await privateRequest.get(`/orders/${id}`);
 //         console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ res:", res);
 //         // setOrders(res?.data);
-//         dispatch(getOrdersSuccess(res.data));
+//         dispatch(getOrderSuccess(res.data));
 //         // setLoading(false);
 //       } catch (error) {
 //         console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ error:", error);
-//         dispatch(getOrdersFailure());
+//         dispatch(getOrderFailure());
 //       }
 // };
+
+//ELIMINAR USUARIO
+// export const deleteUser = async(id, dispatch)=>{
+//   dispatch(deleteUserStart())
+//   try {
+//       const res = await privateRequest(`/orders/${id}`)
+//       console.log("🚀 ~ file: apiCalls.js:132 ~ deleteUser ~ res:", res)
+//       dispatch(deleteUserSuccess(id))
+//   } catch (error) {
+//     console.log("🚀 ~ file: apiCalls.js:132 ~ deleteUser ~ error:", error)
+//     dispatch(deleteUserFailure())
+    
+//   }
+// }
 
 

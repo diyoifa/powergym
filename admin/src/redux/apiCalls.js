@@ -22,9 +22,12 @@ import {
   loginFailure, 
   loginStart, 
   loginSuccess,
-  updateUsersStart,
-  updateUserSuccess,
-  updateUsersFailure
+  updateOrderStart,
+  updateOrderSuccess,
+  updateOrderFailure,
+  deleteOrderStart,
+  deleteOrderSuccess,
+  deleteOrderFailure
 } from "./userRedux";
   
 
@@ -40,6 +43,7 @@ export const login = async (dispatch, user) => {
   }
 };
 
+//PRODUCTOS
 export const getProducts = async (dispatch) => {
   dispatch(getProductStart());
   try {
@@ -95,16 +99,16 @@ export const getUsers = async (dispatch)=>{
 }
 
 //MODIFICAR USUARIO
-export const updateUser = async (id, user, dispatch) => {
-  dispatch(updateUsersStart());
-  try {
-    const res = await privateRequest.put(`/users/${id}`, user);
-    dispatch(updateUserSuccess(res.data));
-    //console.log('entré')
-  } catch (err) {
-    dispatch(updateUsersFailure());
-  }
-};
+// export const updateUser = async (id, user, dispatch) => {
+//   dispatch(updateUsersStart());
+//   try {
+//     const res = await privateRequest.put(`/users/${id}`, user);
+//     dispatch(updateUserSuccess(res.data));
+//     //console.log('entré')
+//   } catch (err) {
+//     dispatch(updateUsersFailure());
+//   }
+// };
 //OBTENER POR ID
 
 //ELIMINAR
@@ -128,4 +132,47 @@ export const deleteUser = async (id, dispatch) => {
     
 //   }
 // }
+
+//ORDENES
+
+//OBTENER ORDENES POR ID DE USUARIO
+// export const getOrders = async (id, dispatch) => {
+//       dispatch(getOrderStart());
+//       try {
+//         const res = await privateRequest.get(`/orders/${id}`);
+//         console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ res:", res);
+//         // setOrders(res?.data);
+//         dispatch(getOrderSuccess(res.data));
+//         // setLoading(false);
+//       } catch (error) {
+//         console.log("🚀 ~ file: apiCalls.js:95 ~ getOrders ~ error:", error);
+//         dispatch(getOrderFailure());
+//       }
+// };
+
+//MODIFICAR ORDEN
+export const updateOrder = async(id, order, dispatch)=>{
+  dispatch(updateOrderStart())
+  try {
+    const res = await privateRequest.put(`/orders/${id}`, order)
+    console.log("🚀 ~ file: apiCalls.js:157 ~ updateOrder ~ res:", res)
+    dispatch(updateOrderSuccess())
+  } catch (error) {
+    console.log("🚀 ~ file: apiCalls.js:158 ~ updateOrder ~ error:", error)
+    dispatch(updateOrderFailure())
+  }
+}
+
+//ELIMINAR ORDEN
+export const deleteOrder = async(id, dispatch)=>{
+  dispatch(deleteOrderStart())
+  try {
+    const res = await privateRequest.delete(`/orders/${id}`)
+    console.log("🚀 ~ file: apiCalls.js:172 ~ deleteOrder ~ res:", res)
+    dispatch(deleteOrderSuccess())
+  } catch (error) {
+    console.log("🚀 ~ file: apiCalls.js:174 ~ deleteOrder ~ error:", error)
+    dispatch(deleteOrderFailure())
+  }
+}
 

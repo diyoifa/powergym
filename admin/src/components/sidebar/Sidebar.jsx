@@ -41,22 +41,25 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Menu rapido</h3>
           <ul className="sidebarList">
-            <Link to="/users" className="link">
+            <Link to="/userlist" className="link">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 usuarios
               </li>
             </Link>
-            <Link to="/products" className="link">
+            <Link to="/productlist" className="link">
               <li className="sidebarListItem">
                 <Storefront className="sidebarIcon" />
                 productos
               </li>
             </Link>
-            <li className="sidebarListItem">
-              <AttachMoney className="sidebarIcon" />
-              transacciones
-            </li>
+
+            <Link to = "/transactionsList" className="link">
+              <li className="sidebarListItem">
+                <AttachMoney className="sidebarIcon" />
+                transacciones
+              </li>
+            </Link>
             {/* <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />
               Reports

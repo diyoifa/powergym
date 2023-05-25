@@ -7,6 +7,7 @@ import Home from './pages/home/Home'
 import Sidebar from './components/sidebar/Sidebar'
 import Topbar from "./components/topbar/Topbar";
 import User from "./pages/user/User";
+import UsersList from "./pages/userList/UserList"
 
 import './index.css'
 
@@ -25,8 +26,9 @@ const App = () => {
           {<Sidebar/>}
           <Routes>
             <Route path="/login" element ={<Home/>}/>
-            <Route path='/logout' element={<Logout/>}></Route>
-            <Route path='/' element={<Home/>}></Route>
+            <Route path='/logout' element={<Logout/>}/>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/userlist' element={<UsersList/>}/>
             <Route path='/user/:id' element={<User/>} />
           </Routes>
         </div>)
