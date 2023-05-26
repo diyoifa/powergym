@@ -121,6 +121,10 @@
     animation-delay: 400ms;
 }
 
+.nav__links-profile li:nth-child(4){
+    animation-delay: 600ms;
+}
+
 .nav__links-profile li a{
     background: var(--color-primary);
     height: 100%;

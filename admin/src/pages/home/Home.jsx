@@ -1,5 +1,5 @@
 import Chart from "../../components/chart/Chart";
-import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
+// import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
 import "./home.css";
 //import { userData } from "../../dummyData";
 import WidgetSm from "../../components/widgetSm/WidgetSm";
@@ -12,18 +12,18 @@ export default function Home() {
 
   const MONTHS = useMemo(
     () => [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Agu",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre",
     ],
     []
   );
@@ -49,7 +49,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <FeaturedInfo/>
+      {/* <FeaturedInfo/> */}
       <Chart
         data={userStats}
         title="Actividad de usuarios"

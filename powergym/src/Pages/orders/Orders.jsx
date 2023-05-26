@@ -36,6 +36,7 @@ const Orders = () => {
     setCurrentPage(value);
     // window.scrollTo({ top: 1800, behavior: 'smooth' });
   }
+  
   const convertirFechaHora = (createdAt) => {
     const fechaHora = new Date(createdAt);
     const opciones = {

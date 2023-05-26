@@ -57,7 +57,7 @@ const userSlice = createSlice({
     },
     createOrdersSuccess: (state, action) => {
       state.isFetching = false
-       state.order = action.payload
+      state.order = action.payload
       state.error = false
     },
     createOrdersFailure: (state) => {
@@ -92,16 +92,14 @@ const userSlice = createSlice({
       // } else {
       //   state.orders = state.orders?.filter((order) => order._id !== orderId);
       // }
-      
+
       state.error = false;
     },
-    
+
     deleteOrderFailure: (state) => {
       state.isFetching = false
       state.error = true
     },
-
-
     // resetUserIfNeeded: (state) => {
     //   if (state.isFetching === false) {
     //     state.currentUser = null
@@ -110,6 +108,32 @@ const userSlice = createSlice({
     // },
     resetError: (state) => {
       state.error = false;
+    },
+
+    updateUserStart: (state) => {
+      state.isFetching = true
+    },
+
+    updateUserSuccess: (state) => {
+      state.isFetching = false
+      state.error = false
+    },
+
+    updateUserFailure: (state) => {
+      state.isFetching = false
+      state.error = false
+    },
+    getUserStart: (state) => {
+      state.isFetching = true
+    },
+    getUserSuccess: (state, action) => {
+      state.isFetching = false
+      state.currentUser = action.payload
+      state.error = false
+    },
+    getUserFailure: (state) => {
+      state.isFetching = false
+      state.error = true
     }
   },
 });
@@ -133,6 +157,12 @@ export const {
   deleteOrderStart,
   deleteOrderSuccess,
   deleteOrderFailure,
+  updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
+  getUserStar,
+  getUserSuccess,
+  getUserFailure
 
 } = userSlice.actions;
 export default userSlice.reducer;

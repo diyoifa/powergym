@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10rem;
+    margin-top: 4rem;
 }
 
 .plan h1{

@@ -19,6 +19,7 @@ import Pay from './Pages/pay/Pay'
 import Orders from './Pages/orders/Orders'
 import { useSelector } from 'react-redux';
 import { Suspense, lazy } from 'react'
+import User from './Pages/user/User'
 
 const About = lazy(()=>import('./Pages/about/About'))
 // import {resetCartIfNeeded} from './redux/cartRedux'
@@ -65,7 +66,9 @@ const App = () => {
             <Route path="/register" element ={<Register/>}/>
             <Route path="/pay/:amount" element ={<Pay/>}/>
             <Route path="/orders" element ={<Orders/>}/>
+            <Route path="/user/:id" element ={<User/>}/>
             <Route path="/logout" element ={!user?<Home/>:<Logout/>}/>
+            
          </Routes>
          <Footer/>
         </BrowserRouter>

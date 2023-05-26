@@ -11,6 +11,7 @@ export default function FeaturedInfo() {
     const getIncome = async () => {
       try {
         const res = await privateRequest.get("orders/income");
+        console.log("🚀 ~ file: FeaturedInfo.jsx:14 ~ getIncome ~ res:", res)
         setIncome(res.data);
         setPerc((res.data[1].total * 100) / res.data[0].total - 100);
       } catch {}

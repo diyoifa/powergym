@@ -17,8 +17,10 @@ import {
 import { 
   deleteUserStart, 
   deleteUserSuccess, 
-  deleteUserFailure, 
-  getUsersSuccess, 
+  deleteUserFailure,
+  getUsersStart, 
+  getUsersSuccess,
+  getUsersFailure, 
   loginFailure, 
   loginStart, 
   loginSuccess,
@@ -27,7 +29,8 @@ import {
   updateOrderFailure,
   deleteOrderStart,
   deleteOrderSuccess,
-  deleteOrderFailure
+  deleteOrderFailure,
+  
 } from "./userRedux";
   
 
@@ -89,12 +92,12 @@ export const addProduct = async (product, dispatch) => {
 
 //OBTENER TODOS
 export const getUsers = async (dispatch)=>{
-  dispatch(loginStart());
+  dispatch(getUsersStart());
   try {
     const res = await privateRequest.get('/users')
     dispatch(getUsersSuccess(res.data))
   } catch (error) {
-    
+    dispatch(getUsersFailure())
   }
 }
 
@@ -116,7 +119,8 @@ export const deleteUser = async (id, dispatch) => {
   dispatch(deleteUserStart());
   try {
     const res = await privateRequest.delete(`/users/${id}`);
-    dispatch(deleteUserSuccess(res.data));
+    console.log("🚀 ~ file: apiCalls.js:120 ~ deleteUser ~ res:", res)
+    dispatch(deleteUserSuccess(id));
   } catch (err) {
     dispatch(deleteUserFailure());
   }

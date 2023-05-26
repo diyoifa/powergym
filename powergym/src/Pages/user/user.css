@@ -1,0 +1,218 @@
+.user {
+  flex: 1;
+  padding: 20px;
+  margin-top: 4rem;
+  background-color: var(--color-gray-600);
+  margin-inline: 0 auto;
+  /* var(--color-gray-600) */
+}
+
+.userTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userAddButton {
+  width: 80px;
+  border: none;
+  padding: 5px;
+  background-color: teal;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+
+.userContainer {
+  display: flex;
+  margin-top: 20px;
+}
+
+.userShow {
+  flex: 1;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 1);
+}
+
+.userUpdate {
+  flex: 2;
+  padding: 23px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 1);
+  /* margin-left: px; */
+}
+
+.userShowTop {
+  display: flex;
+  align-items: center;
+}
+
+.userShowImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userShowTopTitle {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  color: aliceblue;
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.userShowUsername {
+  font-weight: 600;
+}
+
+.userShowUserTitle {
+  font-weight: 300;
+}
+
+.userShowBottom{
+    margin-top: 20px;
+}
+
+.userShowTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(245, 244, 244);
+}
+
+.userShowInfo{
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+    color: #dfdcdc;
+}
+
+.userShowIcon{
+    font-size: 16px ;
+}
+
+.userShowInfoTitle{
+    margin-left: 10px;
+}
+
+.userUpdateTitle{
+    font-size: 24px;
+    font-weight: 600;
+    color: aliceblue;
+    margin-left: 2rem;
+}
+
+.userUpdateForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5px;
+    /* padding: 1rem; */
+}
+
+.userUpdateItem{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    margin-left: 2rem;
+}
+
+.userUpdateItem>label{
+    /* margin-bottom: 1px; */
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.userUpdateInput{
+    border: none;
+    width: 250px;
+    height: 30px;
+    border-bottom: 1px solid rgb(240, 235, 235);
+}
+
+.userUpdateRight{
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.userUpdateBtns{
+  display: flex;
+  gap: 1rem;
+}
+
+.userUpdateUpload{
+    display: flex;
+    align-items: center;
+}
+
+.userUpdateImg{
+    width: 300px;
+    height: 320px; 
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 10px;
+}
+
+.userUpdateIcon{
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.userUpdateIcon:hover{
+  transform: scale(1.5);
+}
+
+
+/* .userUpdateButton{
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    background-color: darkblue;
+    color: white;
+    font-weight: bolder;
+    font-size: 16px;
+    transition: var(--transition);
+} */
+
+.userUpdateButton:hover{
+  transform: scale(1.1);
+}
+
+.userListUser {
+  display: flex;
+  align-items: center;
+}
+
+.userListEdit{
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #3bb077;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+/* .userListAprove{
+  color: #3bb077;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: all 500ms ease;
+}
+
+.userListDelete{
+  color: red;
+  cursor: pointer;
+  transition: all 500ms ease;
+}
+
+.userListAprove:hover, .userListDelete:hover{
+  transform: scale(1.1);
+} */

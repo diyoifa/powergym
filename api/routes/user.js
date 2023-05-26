@@ -46,7 +46,7 @@ router.put("/:id", verifyTokenAndAuthorization, async(req, res)=>{
 //ELIMINAR UN USUARIO
 router.delete("/:id", verifyTokenAndAuthorization, async(req, res)=>{
     try {
-        const user =  await User.findOneAndDelete(req.params.id)
+        const user =  await User.findByIdAndDelete(req.params.id)
         res.status(200).json(`usuario eliminado correctamente: ${user.username}`)
     } catch (error) {
         console.log("error")
@@ -76,7 +76,7 @@ router.get("/", verifyTokenAndAdmin, async(req, res)=>{
 })
 
 //OBTENER UN USUARIO
-router.get('/find/:id', verifyTokenAndAdmin, async(req, res)=>{
+router.get('/find/:id', verifyTokenAndAuthorization, async(req, res)=>{
     try {
         const user = await User.findById(req.params.id)
         const {password, ...others} = user._doc

@@ -45,6 +45,7 @@ const Login = () => {
         // }else{
         //     swal("Buen trabajo!", "datos correctos!", "success")
         // }
+        // window.location.reload()
     }
     
     

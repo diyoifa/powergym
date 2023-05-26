@@ -8,7 +8,8 @@ import {
 } from "@material-ui/icons";
 import {
   //Link,
-  useLocation,
+  useLocation, 
+  //useNavigate,
 } from "react-router-dom";
 import { privateRequest } from "../../requestMethods";
 import "./user.css";
@@ -29,6 +30,8 @@ import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import { updateOrder, deleteOrder } from "../../redux/apiCalls";
 import Pacman from "../../components/PacmanLoader";
 import { convertirFechaHora } from "../../utils/convertirFechaHora";
+// import { deleteUser } from "../../redux/apiCalls";
+
 
 export default function User() {
   // const id = useParams()
@@ -42,7 +45,7 @@ export default function User() {
   const [order, setOrder] = useState([]);
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  // const navigate = useNavigate()
   // const convertirFechaHora = (createdAt) => {
   //   const fechaHora = new Date(createdAt);
   //   const opciones = {
@@ -79,7 +82,7 @@ export default function User() {
   //   updateUser(id, inputs, dispatch)
   // };
 
-  const { username, img, email, phone, fullname, address, createdAt } = user;
+  const {  username, img, email, phone, fullname, address, createdAt } = user;
 
   const handleDelete = (id) => {
     deleteOrder(id, dispatch);
@@ -89,7 +92,15 @@ export default function User() {
   const handleUpdateOrder = (id) => {
     updateOrder(id, { status: "Pagado" }, dispatch);
     window.location.reload();
-  };
+  }
+
+  //  const handleDeleteUser = () => {
+  //     // setData(data.filter((item) => item.id !== id));
+  //      deleteUser(id, dispatch);
+  //      console.log(id)
+  //      navigate('/userlist')
+  //     // window.location.reload();
+  //   };
 
   useEffect(() => {
     const getOrder = async () => {
@@ -216,6 +227,10 @@ export default function User() {
                   <LocationSearching className="userShowIcon" />
                   <span className="userShowInfoTitle">{address}</span>
                 </div>
+                {/* <div className="userShowInfo">
+                  <DeleteOutline className="userListDelete" onClick={handleDeleteUser}/>
+                  <span className="userShowInfoTitle">eliminar usuario</span>
+                </div> */}
               </div>
             </div>
 

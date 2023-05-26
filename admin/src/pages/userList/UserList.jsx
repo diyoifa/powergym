@@ -9,21 +9,45 @@ import { useDispatch, useSelector } from "react-redux";
 // import { format } from "timeago.js";
 import Pacman from "../../components/PacmanLoader";
 import { convertirFechaHora } from "../../utils/convertirFechaHora";
+// import {
+//   getUsersStart, 
+//   // getUsersSuccess,
+//   getUsersFailure, 
+// }from '../../redux/userRedux'
+// import { privateRequest } from "../../requestMethods";
+
 
 export default function UserList() {
-  //const [data, setData] = useState(userRows);
-  const dispatch = useDispatch();
-  const [rows, setRows] = useState([]);
-  //const [transactions, setTransactions] = useState()
-  const [loading, setLoading] = useState(false);
-  const handleDelete = (id) => {
-    //setData(data.filter((item) => item.id !== id));
-    deleteUser(id, dispatch);
-    // window.location.reload();
-  };
 
   const users = useSelector((state) => state.user.users);
   console.log(users);
+  const dispatch = useDispatch();
+  const [rows, setRows] = useState([]);
+  // const [users, setUsers] = useState([])
+  //const [transactions, setTransactions] = useState()
+  const [loading, setLoading] = useState(false);
+
+  const handleDelete = (id) => {
+     deleteUser(id, dispatch);
+     console.log(id)
+    window.location.reload();
+  };
+
+  // useEffect(()=>{
+  //   const getUsers = async ()=>{
+  //     dispatch(getUsersStart());
+  //     setLoading(true)
+  //     try {
+  //       const res = await privateRequest.get('/users')
+  //       //dispatch(getUsersSuccess(res.data))
+  //       setUsers(res.data)
+  //       setLoading(false)
+  //     } catch (error) {
+  //       dispatch(getUsersFailure())
+  //     }
+  //   }
+  //   getUsers()
+  // },[dispatch])
 
   useEffect(() => {
     setLoading(true)

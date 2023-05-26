@@ -24,32 +24,12 @@ import {
 //   deleteUserStart,
 //   deleteUserSuccess,
 // deleteUserFailure
+updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
 } from "./userRedux";
 
-//REGISTRARSE
-export const register = async(dispatch, user)=>{
-  dispatch(registerStart())
-  try {
-    const res = await publicRequest.post("/auth/register", user)
-    console.log("🚀 ~ file: apiCalls.js:17 ~ register ~ res:", res)
-    dispatch(registerSuccess())
-  } catch (error) {
-    console.log("🚀 ~ file: apiCalls.js:20 ~ register ~ error:", error)
-    dispatch(registerFailure())
-  }
-}
 
-
-//INICIAR SESION
-export const login = async (dispatch, user) => {
-  dispatch(loginStart());
-  try {
-    const res = await publicRequest.post("/auth/login", user);
-    dispatch(loginSuccess(res.data));
-  } catch (err) {
-    dispatch(loginFailure());
-  }
-};
 
 //OBTENER PRODUCTOS
 export const getProducts = async(dispatch)=>{
@@ -79,6 +59,65 @@ export const getProducts = async(dispatch)=>{
 //     dispath(getProductFailure())
 //   }
 // }
+
+
+//========================================USUARIO====================================
+
+//REGISTRARSE
+export const register = async(dispatch, user)=>{
+  dispatch(registerStart())
+  try {
+    const res = await publicRequest.post("/auth/register", user)
+    console.log("🚀 ~ file: apiCalls.js:17 ~ register ~ res:", res)
+    dispatch(registerSuccess())
+  } catch (error) {
+    console.log("🚀 ~ file: apiCalls.js:20 ~ register ~ error:", error)
+    dispatch(registerFailure())
+  }
+}
+
+
+//INICIAR SESION
+export const login = async (dispatch, user) => {
+  dispatch(loginStart());
+  try {
+    const res = await publicRequest.post("/auth/login", user);
+    dispatch(loginSuccess(res.data));
+  } catch (err) {
+    dispatch(loginFailure());
+  }
+};
+
+//MODIFICAR USUARIO
+export const updateUser = async (id, user, dispatch) => {
+  dispatch(updateUserStart());
+  try {
+    const res = await privateRequest.put(`/users/${id}`, user);
+    console.log("🚀 ~ file: apiCalls.js:93 ~ updateUser ~ res:", res.data)
+    dispatch(updateUserSuccess());
+    //console.log('entré')
+  } catch (err) {
+    dispatch(updateUserFailure());
+  }
+};
+
+//ELIMINAR USUARIO
+// export const deleteUser = async(id, dispatch)=>{
+//   dispatch(deleteUserStart())
+//   try {
+//       const res = await privateRequest(`/orders/${id}`)
+//       console.log("🚀 ~ file: apiCalls.js:132 ~ deleteUser ~ res:", res)
+//       dispatch(deleteUserSuccess(id))
+//   } catch (error) {
+//     console.log("🚀 ~ file: apiCalls.js:132 ~ deleteUser ~ error:", error)
+//     dispatch(deleteUserFailure())
+    
+//   }
+// }
+
+
+
+//========================================ORDENES====================================
 
 //CREAR ORDEN
 export const order = async(order, dispatch)=>{
@@ -123,18 +162,5 @@ export const deleteOrder = async(id, dispatch)=>{
 //       }
 // };
 
-//ELIMINAR USUARIO
-// export const deleteUser = async(id, dispatch)=>{
-//   dispatch(deleteUserStart())
-//   try {
-//       const res = await privateRequest(`/orders/${id}`)
-//       console.log("🚀 ~ file: apiCalls.js:132 ~ deleteUser ~ res:", res)
-//       dispatch(deleteUserSuccess(id))
-//   } catch (error) {
-//     console.log("🚀 ~ file: apiCalls.js:132 ~ deleteUser ~ error:", error)
-//     dispatch(deleteUserFailure())
-    
-//   }
-// }
 
 

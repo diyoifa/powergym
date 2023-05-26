@@ -4,9 +4,26 @@ import Header from '../../Components/Header'
 import HeaderImage from '../../images/header_bg_5.jpg'
 import {plans} from '../../data'
 import Card from '../../UI/Card'
-import { Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import { order } from '../../redux/apiCalls'
+// import { Link} from 'react-router-dom'
 const Plans = () => {
-  // const navigate = useNavigate()
+
+  const userId = useSelector(state => state.user.currentUser._id)
+  // console.log("🚀 ~ file: Plans.jsx:13 ~ Plans ~ userId:", userId)
+  const dispatch = useDispatch()
+   const navigate = useNavigate()
+    //  const [amount, setAmount] = useState()
+
+
+  const handleClick = (amount)=>{
+    // e.preventDefault()
+    order({userId, amount}, dispatch)
+    navigate(`/pay/${amount}`)
+    window.scroll({ top: -1800, left: 100, behavior: 'smooth'})
+  }
+
   return (
     <>
       <Header title='Nuestros Planes' image={HeaderImage}>
@@ -27,12 +44,14 @@ const Plans = () => {
                         </p>
                     )
                   }
-                  <Link to={`/pay/${price}`}>
-                    <button onClick={() => window.scroll({ top: -1800, left: 100, behavior: 'smooth'})}  className='btn lg' >Elegir</button>
-                  </Link>
+                  {/* <Link to={`/pay/${price}`}> */}
+                  <button onClick={() => handleClick(price)} className='btn lg'>Elegir</button>
+                  {/* </Link> */}
               </Card>
             )
           }
+          {/* <button onClick={handleClick(5000)}  className='btn lg' >Elegir</button>
+          <button onClick={handleClick(55000)}  className='btn lg' >Elegir</button> */}
         </section>
       </div>
     </>
