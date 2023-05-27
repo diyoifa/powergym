@@ -1,8 +1,11 @@
 import { publicRequest, privateRequest } from "../requestMethods";
 import {
-  getProductFailure,
-  getProductStart,
-  getProductSuccess,
+  getProductsFailure,
+  getProductsStart,
+  getProductsSuccess,
+  // getProductStart,
+  // getProductSuccess,
+  // getProductFailure,
   deleteProductFailure,
   deleteProductStart,
   deleteProductSuccess,
@@ -35,7 +38,70 @@ import {
   
 
 
-//Entrar
+//====================================PRODUCTOS==========================================//
+
+//OBTENER PRODUCTOS
+export const getProducts = async (dispatch) => {
+  dispatch(getProductsStart());
+  try {
+    const res = await publicRequest.get("/products");
+    dispatch(getProductsSuccess(res.data))
+  } catch (err) {
+    dispatch(getProductsFailure())
+  }
+};
+
+//OBTENER UN PRODUCTO
+// export const getProduct = async(id, dispatch)=>{
+//   dispatch(getProductStart())
+//   try {
+//     const res = await publicRequest.get(`/products/${id}`)
+//     console.log("🚀 ~ file: apiCalls.js:56 ~ getProduct ~ res:", res)
+//     dispatch(getProductSuccess())
+//   } catch (error) {
+//     console.log("🚀 ~ file: apiCalls.js:62 ~ getProduct ~ error:", error)
+//     dispatch(getProductFailure())
+//   }
+// }
+
+//ELIMINAR PRODUCTO
+export const deleteProduct = async (id, dispatch) => {
+  dispatch(deleteProductStart())
+  try {
+    const res = await privateRequest.delete(`/products/find/${id}`)
+    console.log("🚀 ~ file: apiCalls.js:65 ~ deleteProduct ~ res:", res)
+    dispatch(deleteProductSuccess(res.data))
+  } catch (err) {
+    dispatch(deleteProductFailure())
+  }
+};
+
+// MODIFICAR PRODUCTO
+export const updateProduct = async (id, product, dispatch) => {
+  dispatch(updateProductStart());
+  try {
+    const res = await privateRequest.put(`/products/${id}`, product)
+    console.log("🚀 ~ file: apiCalls.js:85 ~ updateProduct ~ res:", res)
+    dispatch(updateProductSuccess())
+  } catch (err) {
+    dispatch(updateProductFailure())
+  }
+};
+
+//CREAR PRODUCTO
+export const addProduct = async (product, dispatch) => {
+  dispatch(addProductStart());
+  try {
+    const res = await privateRequest.post(`/products`, product)
+    dispatch(addProductSuccess(res.data));
+  } catch (err) {
+    dispatch(addProductFailure());
+  }
+};
+
+//=====================================USUARIOS==============================//
+
+//INICIAR SESION
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
@@ -45,50 +111,6 @@ export const login = async (dispatch, user) => {
     dispatch(loginFailure());
   }
 };
-
-//PRODUCTOS
-export const getProducts = async (dispatch) => {
-  dispatch(getProductStart());
-  try {
-    const res = await publicRequest.get("/products");
-    dispatch(getProductSuccess(res.data));
-  } catch (err) {
-    dispatch(getProductFailure());
-  }
-};
-
-export const deleteProduct = async (id, dispatch) => {
-  dispatch(deleteProductStart());
-  try {
-    const res = await privateRequest.delete(`/products/${id}`);
-    dispatch(deleteProductSuccess(res.data));
-  } catch (err) {
-    dispatch(deleteProductFailure());
-  }
-};
-
-// MODIFICAR PRODUCTO
-export const updateProduct = async (id, product, dispatch) => {
-  dispatch(updateProductStart());
-  try {
-    const res = await privateRequest.put(`/products/${id}`, product);
-    dispatch(updateProductSuccess(res.data));
-    //console.log('entré')
-  } catch (err) {
-    dispatch(updateProductFailure());
-  }
-};
-export const addProduct = async (product, dispatch) => {
-  dispatch(addProductStart());
-  try {
-    const res = await privateRequest.post(`/products`, product);
-    dispatch(addProductSuccess(res.data));
-  } catch (err) {
-    dispatch(addProductFailure());
-  }
-};
-
-//USUARIOS
 
 //OBTENER TODOS
 export const getUsers = async (dispatch)=>{
@@ -114,7 +136,7 @@ export const getUsers = async (dispatch)=>{
 // };
 //OBTENER POR ID
 
-//ELIMINAR
+//ELIMINAR USUARIO
 export const deleteUser = async (id, dispatch) => {
   dispatch(deleteUserStart());
   try {
@@ -125,20 +147,9 @@ export const deleteUser = async (id, dispatch) => {
     dispatch(deleteUserFailure());
   }
 };
+//=================================================================================//
 
-//obtener transacciones de los usuarios
-// export const getUserTransaccion = async(id, dispatch)=>{
-//   dispatch(loginStart())
-//   try {
-//     const res = await privateRequest.get(`users/find/${id}`)
-//     dispatch()
-//   } catch (error) {
-    
-//   }
-// }
-
-//ORDENES
-
+//==========================================ORDENES===================================//
 //OBTENER ORDENES POR ID DE USUARIO
 // export const getOrders = async (id, dispatch) => {
 //       dispatch(getOrderStart());
@@ -179,4 +190,6 @@ export const deleteOrder = async(id, dispatch)=>{
     dispatch(deleteOrderFailure())
   }
 }
+
+//==============================================================================//
 

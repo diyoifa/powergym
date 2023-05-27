@@ -13,6 +13,8 @@ export default function WidgetSm() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch()
   const users = useSelector(state=>state.user.users)
+  const lastUsers =  users.slice(-3).sort((a,b)=> b - a) //ultimos 5 del array y ordenados de mayor a menor
+
   useEffect(() => {
     setLoading(true);
     getUsers(dispatch)
@@ -29,7 +31,7 @@ export default function WidgetSm() {
         <>
           <span className="widgetSmTitle">Nuevos usuarios</span>
           <ul className="widgetSmList">
-            {users.map((user) => (
+            {lastUsers.map((user) => (
               <li className="widgetSmListItem" key={user._id}>
                 <img
                   src={

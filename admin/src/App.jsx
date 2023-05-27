@@ -9,6 +9,7 @@ import Topbar from "./components/topbar/Topbar";
 import User from "./pages/user/User";
 import UsersList from "./pages/userList/UserList"
 import ProductList from "./pages/productList/ProductList"
+import Product from "./pages/product/Product"
 
 import './index.css'
 
@@ -31,6 +32,7 @@ const App = () => {
             <Route path='/' element={<Home/>}/>
             <Route path='/userlist' element={<UsersList/>}/>
             <Route path='/user/:id' element={<User/>} />
+            <Route path='/product/:id' element={<Product/>} />
             <Route path='/productlist' element={<ProductList/>}/>
           </Routes>
         </div>)

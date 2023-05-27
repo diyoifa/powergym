@@ -8,21 +8,34 @@ export const productSlice = createSlice({
     error: false,
   },
   reducers: {
-    //GET ALL
-    getProductStart: (state) => {
+    //OBTENER PRODUCTOS
+    getProductsStart: (state) => {
       state.isFetching = true;
       state.error = false;
     },
-    getProductSuccess: (state, action) => {
+    getProductsSuccess: (state, action) => {
       state.isFetching = false;
       state.products = action.payload;
     },
-    getProductFailure: (state) => {
+    getProductsFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
 
-    //DELETE
+    //OBTENER UN PRODUCTO
+    getProductStart: (state) => {
+      state.isFetching = true
+    },
+    getProductSuccess: (state) => {
+      state.isFetching = false
+      state.error = false
+    },
+    getProductFailure: (state) => {
+      state.error = true
+      state.isFetching = false
+    },
+
+    //ELIMINAR UN PRODUCTO
     deleteProductStart: (state) => {
       state.isFetching = true;
       state.error = false;
@@ -39,23 +52,26 @@ export const productSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-    //UPDATE
+
+    //MODIFICAR PRODUCTO
     updateProductStart: (state) => {
       state.isFetching = true;
       state.error = false;
     },
     updateProductSuccess: (state, action) => {
       state.isFetching = false;
-      state.products[
-        // encontrar el índice del elemento que cumple con la condición 
-        state.products.findIndex((item) => item._id === action.payload.id)
-      ] = action.payload.product; //actualizar ese elemento
+      // state.products[
+      //   // encontrar el índice del elemento que cumple con la condición 
+      //   state.products.findIndex((item) => item._id === action.payload.id)
+      // ] = action.payload.product; //actualizar ese elemento
+      state.error = false
     },
     updateProductFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
-    //ADD
+
+    //CREAR PRODUCTO
     addProductStart: (state) => {
       state.isFetching = true;
       state.error = false;
@@ -72,6 +88,9 @@ export const productSlice = createSlice({
 });
 
 export const {
+  getProductsStart,
+  getProductsSuccess,
+  getProductsFailure,
   getProductStart,
   getProductSuccess,
   getProductFailure,

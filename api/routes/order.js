@@ -45,9 +45,9 @@ router.delete("/:id", verifyToken, async (req, res) => {
 });
 
 
-//GET USER ORDERS
+//OBTENER ORDERNES
 router.get("/:userId", verifyToken, async (req, res) => {
-  const query = req.query.last
+  const query = req.query.new
   try {
     const orders =  query? await Order.find({ userId: req.params.userId }).sort({_id:-1}).limit(5)
     :await Order.find({ userId: req.params.userId })
@@ -59,10 +59,10 @@ router.get("/:userId", verifyToken, async (req, res) => {
 
 //OBTENER TODAS O LAS ULTIMAS 5 ORDENES
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
-  const query = req.query.new;
+  const query = req.query.last;
   try {
     //si new es true solo retorne los ultimos 5, sino todos
-    const orders = query ? await Order.find().sort({_id: -1}).limit(5) 
+    const orders = query ? await Order.find().sort({_id: -1}).limit(3) 
     : await Order.find()
     res.status(200).json(orders);
   } catch (err) {

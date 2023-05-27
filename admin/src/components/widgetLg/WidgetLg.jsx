@@ -14,7 +14,7 @@ export default function WidgetLg() {
     setLoading(true);
     const getOrders = async () => {
       try {
-        const res = await privateRequest.get("/orders/?new=true");
+        const res = await privateRequest.get("/orders/?last=true");
         setOrders(res.data);
         setLoading(false);
       } catch {}
@@ -33,7 +33,7 @@ export default function WidgetLg() {
         <Pacman/>
       ) : (
         <>
-          <h3 className="widgetLgTitle">Todas las transacciones </h3>
+          <h3 className="widgetLgTitle">Nuevas transacciones </h3>
           <table className="widgetLgTable">
             <tr className="widgetLgTr">
               <th className="widgetLgTh">Cliente</th>
