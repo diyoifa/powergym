@@ -60,11 +60,13 @@ const Login = () => {
                     type="text" 
                     placeholder='usuario'  
                     onChange={(e)=>{setUsername(e.target.value)}}
+                    required
                 />
                 <input 
                     type="password" 
                     placeholder='contraseña' 
                     onChange={(e)=>{setPassword(e.target.value)}}
+                    required
                 />
                 <button className='btn' onClick={handleClick}>Ingresar</button>
                 {error 

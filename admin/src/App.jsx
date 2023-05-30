@@ -10,6 +10,7 @@ import User from "./pages/user/User";
 import UsersList from "./pages/userList/UserList"
 import ProductList from "./pages/productList/ProductList"
 import Product from "./pages/product/Product"
+import NewProduct from "./pages/newProduct/NewProduct"
 
 import './index.css'
 
@@ -34,6 +35,7 @@ const App = () => {
             <Route path='/user/:id' element={<User/>} />
             <Route path='/product/:id' element={<Product/>} />
             <Route path='/productlist' element={<ProductList/>}/>
+            <Route path = '/newproduct' element = {<NewProduct/>} />
           </Routes>
         </div>)
       }

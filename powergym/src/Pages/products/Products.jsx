@@ -19,13 +19,14 @@ import Paginacíon from '../../Components/Paginacíon'
 const Products = () => {
     const dispatch = useDispatch()
     const products = useSelector((state) => state.product.products);
+    const availableProducts = products.filter(product => product.inStock !== false)
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 3
     //tomamos el ultimo elemento
     const indexOfLastProduct = currentPage * productsPerPage
     const indexOfFirtProduct = indexOfLastProduct - productsPerPage
-    const currentProducts = products.slice(indexOfFirtProduct, indexOfLastProduct)
+    const currentProducts = availableProducts.slice(indexOfFirtProduct, indexOfLastProduct)
     //console.log("🚀 products:", products)
 
     const paginate = (event, value) => {
@@ -97,7 +98,7 @@ const Products = () => {
             )}
         </div> */}
         <Paginacíon 
-        array={products} 
+        array={availableProducts} 
         currentPage={currentPage} 
         dataPerPage={productsPerPage}
         paginate={paginate}

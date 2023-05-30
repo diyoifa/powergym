@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { privateRequest } from "../../requestMethods";
 import "./widgetLg.css";
 // import {format} from "timeago.js"
-import { format } from "timeago.js";
+// import { format } from "timeago.js";
+import {convertirFechaHora} from "../../utils/convertirFechaHora"
 import Pacman from "../PacmanLoader";
 // import { BarLoader } from "react-spinners";
 
@@ -46,7 +47,7 @@ export default function WidgetLg() {
                 <td className="widgetLgUser">
                   <span className="widgetLgName">{order.userId}</span>
                 </td>
-                <td className="widgetLgDate">{format(order.createdAt)}</td>
+                <td className="widgetLgDate">{convertirFechaHora(order.createdAt)}</td>
                 <td className="widgetLgAmount">${order.amount}</td>
                 <td className="widgetLgStatus">
                   <Button type={order.status} />

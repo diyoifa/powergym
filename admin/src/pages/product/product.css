@@ -83,11 +83,14 @@
 .productFormLeft {
   display: flex;
   flex-direction: column;
+  font-weight: bolder;
+  font-size: larger;
+  width: 40%;
 }
 
 .productFormLeft > label {
   margin-bottom: 10px;
-  color: gray;
+  color: rgb(41, 40, 40);
 }
 
 .productFormLeft > input {

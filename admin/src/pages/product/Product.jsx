@@ -4,8 +4,12 @@ import "./product.css";
 //import { productData } from "../../dummyData";
 import { Publish } from "@material-ui/icons";
 // import { useSelector } from "react-redux";
-import { useEffect, useMemo, useState } from "react";
-import { privateRequest, publicRequest } from "../../requestMethods";
+import { useEffect, 
+  // useMemo,
+   useState } from "react";
+import { 
+  // privateRequest, 
+  publicRequest } from "../../requestMethods";
 import { updateProduct } from "../../redux/apiCalls";
 import { useDispatch } from "react-redux";
 import {
@@ -36,21 +40,24 @@ export default function Product() {
   const location = useLocation();
   //seleccionamos la segunda parte el ID
   const productId = location.pathname.split("/")[2];
-  const [pStats, setPStats] = useState([]);
+  // const [pStats, setPStats] = useState([]);
   const [product, setProduct] = useState({})
   const [inputs, setInputs] = useState({});
   const [file, setFile] = useState(null);
   const [progres, setProgres] = useState("")
-
-  console.log("🚀 ~ file: Product.jsx:35 ~ Product ~ inputs:", inputs)
+  // console.log("🚀 ~ file: Product.jsx:35 ~ Product ~ inputs:", inputs)
   const dispatch = useDispatch();
+
+
   /*
   //encontramos los datos de nuestro producto por su ID
   // const product = useSelector((state) =>
   //   state.product.products.find((product) => product._id === productId)
   // );
 */
-  useEffect(()=>{
+ 
+//OBTENER PRODUCTO
+useEffect(()=>{
     const getProduct = async()=>{
         dispatch(getProductStart())
         try {
@@ -68,9 +75,7 @@ export default function Product() {
   // console.log("🚀 ~ file: Product.jsx:31 ~ Product ~ product:", product)
 
   const{_id, title, desc, inStock, img, price} = product
-
-   
-
+/*
   const MONTHS = useMemo(
     () => [
       "Enero",
@@ -88,7 +93,7 @@ export default function Product() {
     ],
     []
   );
-
+*/
   const handleChange = (e) => {
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -100,7 +105,7 @@ export default function Product() {
     updateProduct(productId, {...inputs}, dispatch)
   }
 
-  
+/* 
 useEffect(() => {
     const getStats = async () => {
       try {
@@ -121,6 +126,7 @@ useEffect(() => {
     };
     getStats();
   }, [productId, MONTHS]);
+  */  
   
   const handleClickImg = (e) => {
     e.preventDefault()
