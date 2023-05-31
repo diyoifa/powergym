@@ -1,21 +1,20 @@
 import "./sidebar.css";
+import React, { useState } from "react";
 import {
   LineStyle,
-  // Timeline,
-  // TrendingUp,
   PermIdentity,
   Storefront,
   AttachMoney,
-  // BarChart,
-  // MailOutline,
-  // DynamicFeed,
-  // ChatBubbleOutline,
-  // WorkOutline,
-  // Report,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
+  const [activeItem, setActiveItem] = useState(0);
+
+  const handleItemClick = (index) => {
+    setActiveItem(index);
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -23,83 +22,51 @@ export default function Sidebar() {
           <h3 className="sidebarTitle">Menu</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
-            <li className="sidebarListItem active">
-              <LineStyle className="sidebarIcon" />
-              Inicio
-            </li>
+              <li
+                className={`sidebarListItem ${activeItem === 0 ? "active" : ""}`}
+                onClick={() => handleItemClick(0)}
+              >
+                <LineStyle className="sidebarIcon" />
+                Inicio
+              </li>
             </Link>
-            {/* <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <TrendingUp className="sidebarIcon" />
-              Sales
-            </li> */}
+            {/* Resto de los elementos de la lista */}
           </ul>
         </div>
         <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Menu rapido</h3>
+          <h3 className="sidebarTitle">Menu rápido</h3>
           <ul className="sidebarList">
             <Link to="/userlist" className="link">
-              <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
-                usuarios
+              <li
+                className={`sidebarListItem ${activeItem === 1 ? "active" : ""}`}
+                onClick={() => handleItemClick(1)}
+              >
+                <PermIdentity />
+                Usuarios
               </li>
             </Link>
-            <Link to="/productlist" className="link">
-              <li className="sidebarListItem">
+            <Link to="/productslist" className="link">
+              <li
+                className={`sidebarListItem ${activeItem === 2 ? "active" : ""}`}
+                onClick={() => handleItemClick(2)}
+              >
                 <Storefront className="sidebarIcon" />
-                productos
+                Productos
               </li>
             </Link>
 
-            <Link to = "/transactionsList" className="link">
-              <li className="sidebarListItem">
+            <Link to="/transactionsList" className="link">
+              <li
+                className={`sidebarListItem ${activeItem === 3 ? "active" : ""}`}
+                onClick={() => handleItemClick(3)}
+              >
                 <AttachMoney className="sidebarIcon" />
-                transacciones
+                Transacciones
               </li>
             </Link>
-            {/* <li className="sidebarListItem">
-              <BarChart className="sidebarIcon" />
-              Reports
-            </li> */}
+            {/* Resto de los elementos de la lista */}
           </ul>
         </div>
-        {/* <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Notifications</h3>
-          <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <MailOutline className="sidebarIcon" />
-              Mail
-            </li>
-            <li className="sidebarListItem">
-              <DynamicFeed className="sidebarIcon" />
-              Feedback
-            </li>
-            <li className="sidebarListItem">
-              <ChatBubbleOutline className="sidebarIcon" />
-              Messages
-            </li>
-          </ul>
-        </div> */}
-        {/* <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Staff</h3>
-          <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <WorkOutline className="sidebarIcon" />
-              Manage
-            </li>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <Report className="sidebarIcon" />
-              Reports
-            </li>
-          </ul>
-        </div> */}
       </div>
     </div>
   );

@@ -56,6 +56,7 @@ export default function User() {
   //   return fechaHora.toLocaleString(undefined, opciones);
   // }
 
+  //OBTENER EL USUARIO 
   useEffect(() => {
     const getUser = async () => {
       try {
@@ -84,11 +85,13 @@ export default function User() {
 
   const {  username, img, email, phone, fullname, address, createdAt } = user;
 
+  //ELIMINAR ORDEN
   const handleDelete = (id) => {
     deleteOrder(id, dispatch);
     window.location.reload(); //refresque la pagina como lo haria un boton
   };
 
+  //ACTUALIZAR ORDEN
   const handleUpdateOrder = (id) => {
     updateOrder(id, { status: "Pagado" }, dispatch);
     window.location.reload();
